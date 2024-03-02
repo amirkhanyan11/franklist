@@ -51,8 +51,8 @@ public:
         friend FrankList<value_type>;
     public:
         const_iterator(const base_iterator& rhv); //O(1) // x
-        const_iterator(base_iterator&& rhv); //O(1)
-        
+        const_iterator(base_iterator&& rhv); //O(1) // x
+
         const const_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const const_iterator& operator=(base_iterator&& rhv); //O(1) // x
         const_reference operator*() const; //O(1) // x
@@ -89,74 +89,74 @@ public:
     {
         friend FrankList<value_type>;
     public:
-        const_reverse_iterator(const base_iterator& rhv); //O(1)
-        const_reverse_iterator(base_iterator&& rhv); //O(1)
-        
-        const const_reverse_iterator& operator=(const base_iterator& rhv); //O(1)
-        const const_reverse_iterator& operator=(base_iterator&& rhv); //O(1)
-        const_reference operator*() const; //O(1)
-        const_pointer operator->() const; //O(1)
+        const_reverse_iterator(const base_iterator& rhv); //O(1) // x
+        const_reverse_iterator(base_iterator&& rhv); //O(1) // x
 
-        const const_reverse_iterator& operator++(); //O(1)
-        const const_reverse_iterator operator++(value_type); //O(1)
-        const const_reverse_iterator& operator--(); //O(1)
-        const const_reverse_iterator operator--(value_type); //O(1)
+        const const_reverse_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const const_reverse_iterator& operator=(base_iterator&& rhv); //O(1) // x
+        const_reference operator*() const; //O(1) // x
+        const_pointer operator->() const; //O(1) // x
+
+        const const_reverse_iterator& operator++(); //O(1) // x
+        const const_reverse_iterator operator++(value_type); //O(1) // x
+        const const_reverse_iterator& operator--(); //O(1) // x
+        const const_reverse_iterator operator--(value_type); //O(1) // x
 
     protected:
-        explicit const_reverse_iterator(Node* ptr); //O(1)
+        explicit const_reverse_iterator(Node* ptr); //O(1) // x
     };
 public:
     class reverse_iterator : public const_reverse_iterator
     {
         friend FrankList<value_type>;
     public:
-        reverse_iterator(const base_iterator& rhv); //O(1)
-        reverse_iterator(base_iterator&& rhv); //O(1)
+        reverse_iterator(const base_iterator& rhv); //O(1) // x
+        reverse_iterator(base_iterator&& rhv); //O(1) // x
 
-        reference operator*(); //O(1)
-        pointer operator->(); //O(1)
+        reference operator*(); //O(1) // x
+        pointer operator->(); //O(1) // x
 
-        const reverse_iterator& operator=(const base_iterator& rhv); //O(1)
-        const reverse_iterator& operator=(base_iterator&& rhv); //O(1)
-        
+        const reverse_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const reverse_iterator& operator=(base_iterator&& rhv); //O(1) // x
+
     protected:
-        explicit reverse_iterator(Node* ptr); //O(1)
+        explicit reverse_iterator(Node* ptr); //O(1) // x
     };
 public:
-    class const_asc_iterator :public base_iterator
+    class const_asc_iterator : public base_iterator
     {
         friend FrankList<value_type>;
     public:
-        const_asc_iterator(const base_iterator& rhv); //O(1)
-        const_asc_iterator(base_iterator&& rhv); //O(1)
-        
-        const const_asc_iterator& operator=(const base_iterator& rhv); //O(1)
-        const const_asc_iterator& operator=(base_iterator&& rhv); //O(1)
-        const_reference operator*() const; //O(1)
-        const_pointer operator->() const; //O(1)
+        const_asc_iterator(const base_iterator& rhv); //O(1) // x
+        const_asc_iterator(base_iterator&& rhv); //O(1) // x
 
-        const const_asc_iterator& operator++(); //O(1)
-        const const_asc_iterator operator++(value_type); //O(1)
-        const const_asc_iterator& operator--(); //O(1)
-        const const_asc_iterator operator--(value_type); //O(1)
+        const const_asc_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const const_asc_iterator& operator=(base_iterator&& rhv); //O(1) // x
+        const_reference operator*() const; //O(1) // x
+        const_pointer operator->() const; //O(1) // x
+
+        const const_asc_iterator& operator++(); //O(1) // x
+        const const_asc_iterator operator++(value_type); //O(1) // x
+        const const_asc_iterator& operator--(); //O(1) // x
+        const const_asc_iterator operator--(value_type); //O(1) // x
 
     protected:
-        explicit const_asc_iterator(Node* ptr); //O(1)
+        explicit const_asc_iterator(Node* ptr); //O(1) // x
     };
 public:
     class asc_iterator : public const_asc_iterator
     {
         friend FrankList<value_type>;
     public:
-        asc_iterator(const base_iterator& rhv); //O(1)
-        asc_iterator(base_iterator&& rhv); //O(1)
+        asc_iterator(const base_iterator& rhv); //O(1) // x
+        asc_iterator(base_iterator&& rhv); //O(1) // x
 
-        reference operator*(); //O(1)
-        pointer operator->(); //O(1)
+        reference operator*(); //O(1) // x
+        pointer operator->(); //O(1) // x
 
-        const asc_iterator& operator=(const base_iterator& rhv); //O(1)
-        const asc_iterator& operator=(base_iterator&& rhv); //O(1)
-        
+        const asc_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const asc_iterator& operator=(base_iterator&& rhv); //O(1) // x
+
     protected:
         explicit asc_iterator(Node* ptr); //O(1)
     };
@@ -165,60 +165,60 @@ public:
     {
         friend FrankList<value_type>;
     public:
-        const_desc_iterator(const base_iterator& rhv); //O(1)
-        const_desc_iterator(base_iterator&& rhv); //O(1)
-        
-        const const_desc_iterator& operator=(const base_iterator& rhv); //O(1)
-        const const_desc_iterator& operator=(base_iterator&& rhv); //O(1)
-        const_reference operator*() const; //O(1)
-        const_pointer operator->() const; //O(1)
+        const_desc_iterator(const base_iterator& rhv); //O(1) // x
+        const_desc_iterator(base_iterator&& rhv); //O(1) // x
 
-        const const_desc_iterator& operator++(); //O(1)
-        const const_desc_iterator operator++(value_type); //O(1)
-        const const_desc_iterator& operator--(); //O(1)
-        const const_desc_iterator operator--(value_type); //O(1)
+        const const_desc_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const const_desc_iterator& operator=(base_iterator&& rhv); //O(1) // x
+        const_reference operator*() const; //O(1) // x
+        const_pointer operator->() const; //O(1) // x
+
+        const const_desc_iterator& operator++(); //O(1) // x
+        const const_desc_iterator operator++(value_type); //O(1) // x
+        const const_desc_iterator& operator--(); //O(1) // x
+        const const_desc_iterator operator--(value_type); //O(1) // x
 
     protected:
-        explicit const_desc_iterator(Node* ptr); //O(1)
+        explicit const_desc_iterator(Node* ptr); //O(1) // x
     };
 public:
     class desc_iterator : public const_desc_iterator
     {
         friend FrankList<value_type>;
     public:
-        desc_iterator(const base_iterator& rhv); //O(1)
-        desc_iterator(base_iterator&& rhv); //O(1)
+        desc_iterator(const base_iterator& rhv); //O(1) // x
+        desc_iterator(base_iterator&& rhv); //O(1) // x
 
-        reference operator*(); //O(1)
-        pointer operator->(); //O(1)
+        reference operator*(); //O(1) // x
+        pointer operator->(); //O(1) // x
 
-        const desc_iterator& operator=(const base_iterator& rhv); //O(1)
-        const desc_iterator& operator=(base_iterator&& rhv); //O(1)
-        
+        const desc_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const desc_iterator& operator=(base_iterator&& rhv); //O(1) // x
+
     protected:
-        explicit desc_iterator(Node* ptr); //O(1)
+        explicit desc_iterator(Node* ptr); //O(1) // x
     };
 public:
     class const_multi_iterator : public base_iterator
     {
         friend FrankList<value_type>;
     public:
-        const_multi_iterator(const base_iterator& rhv); //O(1)
-        const_multi_iterator(base_iterator&& rhv); //O(1)
-        
-        const const_multi_iterator& operator=(const base_iterator& rhv); //O(1)
-        const const_multi_iterator& operator=(base_iterator&& rhv); //O(1)
-        const_reference operator*() const; //O(1)
-        const_pointer operator->() const; //O(1)
+        const_multi_iterator(const base_iterator& rhv); //O(1) // x
+        const_multi_iterator(base_iterator&& rhv); //O(1) // x
 
-        const const_multi_iterator& operator++(); //O(1)
-        const const_multi_iterator operator++(value_type); //O(1)
-        const const_multi_iterator& operator--(); //O(1)
-        const const_multi_iterator operator--(value_type); //O(1)
+        const const_multi_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const const_multi_iterator& operator=(base_iterator&& rhv); //O(1) // x
+        const_reference operator*() const; //O(1) // x
+        const_pointer operator->() const; //O(1) // x
+
+        const const_multi_iterator& operator++(); //O(1) // x
+        const const_multi_iterator operator++(value_type); //O(1) // x
+        const const_multi_iterator& operator--(); //O(1) // x
+        const const_multi_iterator operator--(value_type); //O(1) // x
 
         void chmod(); //O(1)
     protected:
-        explicit const_multi_iterator(Node* ptr); //O(1)
+        explicit const_multi_iterator(Node* ptr); //O(1) // x
         bool mode = true;
     };
 public:
@@ -226,40 +226,40 @@ public:
     {
         friend FrankList<value_type>;
     public:
-        multi_iterator(const base_iterator& rhv); //O(1)
-        multi_iterator(base_iterator&& rhv); //O(1)
+        multi_iterator(const base_iterator& rhv); //O(1) // x
+        multi_iterator(base_iterator&& rhv); //O(1) // x
 
-        reference operator*(); //O(1)
-        pointer operator->(); //O(1)
+        reference operator*(); //O(1) // x
+        pointer operator->(); //O(1) // x
 
-        const multi_iterator& operator=(const base_iterator& rhv); //O(1)
-        const multi_iterator& operator=(base_iterator&& rhv); //O(1)
-        
+        const multi_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const multi_iterator& operator=(base_iterator&& rhv); //O(1) // x
+
     protected:
-        explicit multi_iterator(Node* ptr); //O(1)
+        explicit multi_iterator(Node* ptr); //O(1) // x
     };
 public:
     class const_multi_reverse_iterator : public base_iterator
     {
         friend FrankList<value_type>;
     public:
-        const_multi_reverse_iterator(const base_iterator& rhv); //O(1)
-        const_multi_reverse_iterator(base_iterator&& rhv); //O(1)
-        
-        const const_multi_reverse_iterator& operator=(const base_iterator& rhv); //O(1)
-        const const_multi_reverse_iterator& operator=(base_iterator&& rhv); //O(1)
-        const_reference operator*() const; //O(1)
-        const_pointer operator->() const; //O(1)
+        const_multi_reverse_iterator(const base_iterator& rhv); //O(1) // x
+        const_multi_reverse_iterator(base_iterator&& rhv); //O(1) // x
 
-        const const_multi_reverse_iterator& operator++(); //O(1)
-        const const_multi_reverse_iterator operator++(value_type); //O(1)
-        const const_multi_reverse_iterator& operator--(); //O(1)
-        const const_multi_reverse_iterator operator--(value_type); //O(1)
+        const const_multi_reverse_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const const_multi_reverse_iterator& operator=(base_iterator&& rhv); //O(1) // x
+        const_reference operator*() const; //O(1) // x
+        const_pointer operator->() const; //O(1) // x
+
+        const const_multi_reverse_iterator& operator++(); //O(1) // x
+        const const_multi_reverse_iterator operator++(value_type); //O(1) // x
+        const const_multi_reverse_iterator& operator--(); //O(1) // x
+        const const_multi_reverse_iterator operator--(value_type); //O(1) // x
 
 
         void chmod(); //O(1)
     protected:
-        explicit const_multi_reverse_iterator(Node* ptr); //O(1)
+        explicit const_multi_reverse_iterator(Node* ptr); //O(1) // x
         bool mode = true;
     };
 public:
@@ -275,7 +275,7 @@ public:
 
         const multi_reverse_iterator& operator=(const base_iterator& rhv); //O(1)
         const multi_reverse_iterator& operator=(base_iterator&& rhv); //O(1)
-        
+
     protected:
         explicit multi_reverse_iterator(Node* ptr); //O(1)
     };
@@ -364,12 +364,12 @@ public:
     template <typename iter>
     typename std::enable_if<std::is_base_of<const_iterator, iter>::value ||
                               std::is_base_of<const_asc_iterator, iter>::value ||
-                              std::is_base_of<const_multi_iterator, iter>::value, 
+                              std::is_base_of<const_multi_iterator, iter>::value,
              iter>::type
     insert(iter pos, const_reference val) { //O(1)
         return insert_def(pos, val);
     }
-    
+
     template <typename iter>
     typename std::enable_if<std::is_base_of<const_reverse_iterator, iter>::value ||
                               std::is_base_of<const_desc_iterator, iter>::value ||
@@ -413,7 +413,7 @@ protected:
 private:
     template <typename iter>
     iter insert_def(iter pos, const_reference val); //O(1)
-    
+
     template <typename iter>
     iter insert_rev(iter pos, const_reference val); //O(1)
 

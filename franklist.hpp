@@ -41,6 +41,7 @@ typename FrankList<T>::size_type FrankList<T>::size() const
 
     for (auto i = head; i != nullptr; i = i->next)
         lstsize++;
-    
+
+
     return lstsize;
 }

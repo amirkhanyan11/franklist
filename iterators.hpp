@@ -1,6 +1,18 @@
 
+#ifndef __ITERATORS_HPP__
+#define __ITERATORS_HPP__
+
 #include "franklist.h"
-#include "const_iterator.hpp"
+#include "__const_iterator.hpp"
+#include "__iterator.hpp"
+#include "__const_reverse_iterator.hpp"
+#include "__reverse_iterator.hpp"
+#include "__const_asc_iterator.hpp"
+#include "__const_desc_iterator.hpp"
+#include "__desc_iterator.hpp"
+#include "__const_multi_iterator.hpp"
+#include "__const_multi_reverse_iterator.hpp"
+#include "__multi_reverse_iterator.hpp"
 
 // BASE ITERATOR
 template <typename T>
@@ -24,56 +36,4 @@ template <typename T>
 FrankList<T>::base_iterator::~base_iterator() = default;
 
 
-
-
-
-
-
-
-
-
-
-template <typename T>
-FrankList<T>::iterator::iterator(const base_iterator& rhv)
-{
-    this->ptr = rhv->ptr;
-}
-
-template <typename T>
-FrankList<T>::iterator::iterator(base_iterator&& rhv)
-{
-    this->ptr = rhv->ptr;
-}
-
-template <typename T>
-typename FrankList<T>::reference FrankList<T>::iterator::operator*()
-{
-    return *(this->ptr);
-}
-
-template <typename T>
-typename FrankList<T>::pointer FrankList<T>::iterator::operator->()
-{
-    return (this->ptr);
-}
-
-template <typename T>
-const typename FrankList<T>::iterator& FrankList<T>::iterator::operator=(const base_iterator& rhv)
-{
-    return (*this = std::move(rhv));
-}
-
-template <typename T>
-const typename FrankList<T>::iterator& FrankList<T>::iterator::operator=(const base_iterator& rhv)
-{
-    if (this != &rhv)
-        this->ptr = rhv.ptr;
-    return *this;
-}
-
-template <typename T>
-FrankList<T>::iterator::iterator(Node* ptr)
-{
-    this->ptr = ptr;
-}
-
+#endif // __ITERATORS_HPP__
