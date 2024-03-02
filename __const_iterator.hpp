@@ -47,7 +47,7 @@ typename FrankList<T>::const_reference FrankList<T>::const_iterator::operator*()
 template <typename T>
 typename FrankList<T>::const_pointer FrankList<T>::const_iterator::operator->() const
 {
-	return static_cast<const_pointer>(&(this->ptr->value));
+	return (this->ptr);
 }
 
 template <typename T>
