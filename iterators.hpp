@@ -16,11 +16,13 @@
 #include "__const_multi_reverse_iterator.hpp"
 #include "__multi_reverse_iterator.hpp"
 
+#include "__member_iterator_methods.hpp"
+
 // BASE ITERATOR
 template <typename T>
 bool FrankList<T>::base_iterator::operator== (const FrankList<T>::base_iterator& rhv) const
 {
-    return (this->ptr == rhv->ptr);
+    return (this->ptr == rhv.ptr);
 }
 
 template <typename T>

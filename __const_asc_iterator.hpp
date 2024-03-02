@@ -10,15 +10,13 @@ using namespace vhuk;
 
 template <typename T>
 FrankList<T>::const_asc_iterator::const_asc_iterator(const base_iterator& rhv)
-{
-	this->ptr = ptr;
-}
+
+	: base_iterator(rhv.ptr){}
 
 template <typename T>
 FrankList<T>::const_asc_iterator::const_asc_iterator(base_iterator&& rhv)
-{
-	this->ptr = ptr;
-}
+
+	: base_iterator(rhv.ptr){}
 
 
 template <typename T>
@@ -38,7 +36,7 @@ const typename FrankList<T>::const_asc_iterator& FrankList<T>::const_asc_iterato
 template <typename T>
 typename FrankList<T>::const_reference FrankList<T>::const_asc_iterator::operator*() const
 {
-	return *(this->ptr);
+	return (this->ptr->val);
 }
 
 template <typename T>

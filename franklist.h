@@ -326,39 +326,39 @@ public:
     bool operator>=(const FrankList<value_type>& rhv) const; //O(n)
 
 public:
-    const_iterator cbegin() const; //O(1)
-    const_iterator cend() const; //O(1)
-    const_reverse_iterator crbegin() const; //O(1)
-    const_reverse_iterator crend() const; //O(1)
-    const_asc_iterator cabegin() const; //O(1)
-    const_asc_iterator caend() const; //O(1)
-    const_desc_iterator cdbegin() const; //O(1)
-    const_desc_iterator cdend() const; //O(1)
-    const_multi_iterator cmbegin() const; //O(1)
-    const_multi_iterator cmend() const; //O(1)
-    const_multi_iterator cmabegin() const; //O(1)
-    const_multi_iterator cmaend() const; //O(1)
-    const_multi_reverse_iterator cmrbegin() const; //O(1)
-    const_multi_reverse_iterator cmrend() const; //O(1)
-    const_multi_reverse_iterator cmrdbegin() const; //O(1)
-    const_multi_reverse_iterator cmrdend() const; //O(1)
+    const_iterator cbegin() const; //O(1) // x
+    const_iterator cend() const; //O(1) // x
+    const_reverse_iterator crbegin() const; //O(1) // x
+    const_reverse_iterator crend() const; //O(1) // x
+    const_asc_iterator cabegin() const; //O(1) // x
+    const_asc_iterator caend() const; //O(1) // x
+    const_desc_iterator cdbegin() const; //O(1) // x
+    const_desc_iterator cdend() const; //O(1) // x
+    const_multi_iterator cmbegin() const; //O(1) // x
+    const_multi_iterator cmend() const; //O(1) // x
+    const_multi_iterator cmabegin() const; //O(1) // x
+    const_multi_iterator cmaend() const; //O(1) // x
+    const_multi_reverse_iterator cmrbegin() const; //O(1) // x
+    const_multi_reverse_iterator cmrend() const; //O(1) // x
+    const_multi_reverse_iterator cmrdbegin() const; //O(1) // x
+    const_multi_reverse_iterator cmrdend() const; //O(1) // x
 
-    iterator begin(); //O(1)
-    iterator end(); //O(1)
-    reverse_iterator rbegin(); //O(1)
-    reverse_iterator rend(); //O(1)
-    asc_iterator abegin(); //O(1)
-    asc_iterator aend(); //O(1)
-    desc_iterator dbegin(); //O(1)
-    desc_iterator dend(); //O(1)
-    multi_iterator mbegin(); //O(1)
-    multi_iterator mend(); //O(1)
-    multi_iterator mabegin(); //O(1)
-    multi_iterator maend(); //O(1)
-    multi_reverse_iterator mrbegin(); //O(1)
-    multi_reverse_iterator mrend(); //O(1)
-    multi_reverse_iterator mrdbegin(); //O(1)
-    multi_reverse_iterator mrdend(); //O(1)
+    iterator begin(); //O(1) // x
+    iterator end(); //O(1) // x
+    reverse_iterator rbegin(); //O(1) // x
+    reverse_iterator rend(); //O(1) // x
+    asc_iterator abegin(); //O(1) // x
+    asc_iterator aend(); //O(1) // x
+    desc_iterator dbegin(); //O(1) // x
+    desc_iterator dend(); //O(1) // x
+    multi_iterator mbegin(); //O(1) // x
+    multi_iterator mend(); //O(1) // x
+    multi_iterator mabegin(); //O(1) // x
+    multi_iterator maend(); //O(1) // x
+    multi_reverse_iterator mrbegin(); //O(1) // x
+    multi_reverse_iterator mrend(); //O(1) // x
+    multi_reverse_iterator mrdbegin(); //O(1) // x
+    multi_reverse_iterator mrdend(); //O(1) // x
 
 public:
     template <typename iter>

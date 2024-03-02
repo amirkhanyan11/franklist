@@ -1,16 +1,24 @@
 #include <iostream>
-//#include "franklist.h"
+#include "franklist.h"
 #include <vector>
+
+using namespace vhuk;
+
 
 int main()
 {
-	std::vector<int> vec = {1, 2, 3, 4, 5};
+	FrankList<int> flist(10);
 
+	FrankList<int>::iterator iter = flist.begin();
 
+	FrankList<int>::asc_iterator aiter = iter;
 
-    for (auto i = vec.rbegin(); i != vec.rend(); i++)
-	{
-		auto j = std::move(i);
-		std::cout << (i == j) << std::endl;
-	}
+	std::cout << iter->val	<< std::endl;
+
+	// for (auto i : flist)
+	// {
+	// 	std::cout << i << std::endl;
+	// }
+
+	return 0;
 }

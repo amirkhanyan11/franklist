@@ -9,16 +9,13 @@ using namespace vhuk;
 
 template <typename T>
 FrankList<T>::const_desc_iterator::const_desc_iterator(const base_iterator& rhv)
-{
-	this->ptr = ptr;
-}
+
+	: base_iterator(rhv.ptr){}
 
 template <typename T>
 FrankList<T>::const_desc_iterator::const_desc_iterator(base_iterator&& rhv)
-{
-	this->ptr = ptr;
-}
 
+	: base_iterator(rhv.ptr){}
 
 template <typename T>
 const typename FrankList<T>::const_desc_iterator& FrankList<T>::const_desc_iterator::operator=(const base_iterator& rhv)
@@ -37,7 +34,7 @@ const typename FrankList<T>::const_desc_iterator& FrankList<T>::const_desc_itera
 template <typename T>
 typename FrankList<T>::const_reference FrankList<T>::const_desc_iterator::operator*() const
 {
-	return *(this->ptr);
+	return (this->ptr->val);
 }
 
 template <typename T>

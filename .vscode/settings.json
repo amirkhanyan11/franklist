@@ -28,6 +28,7 @@
 		"istream": "cpp",
 		"locale": "cpp",
 		"ostream": "cpp",
-		"streambuf": "cpp"
+		"streambuf": "cpp",
+		"functional": "cpp"
 	}
 }

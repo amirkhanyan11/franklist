@@ -1,6 +1,7 @@
 #include "node.hpp"
 #include "iterators.hpp"
 
+
 template <typename T>
 FrankList<T>::FrankList()
 
@@ -26,7 +27,6 @@ FrankList<T>::FrankList(size_type size)
 }
 
 
-
 template <typename T>
 bool FrankList<T>::empty() const
 {
@@ -39,9 +39,16 @@ typename FrankList<T>::size_type FrankList<T>::size() const
 {
     size_type lstsize = 0;
 
-    for (auto i = head; i != nullptr; i = i->next)
+    for (auto i : *this)
         lstsize++;
 
-
-    return lstsize;
+    return (lstsize);
 }
+
+template <typename T>
+FrankList<T>::~FrankList()
+{
+	std::cout << "mah" << std::endl;
+
+}
+
