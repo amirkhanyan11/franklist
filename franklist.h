@@ -283,12 +283,12 @@ public:
 public:
     FrankList(); //O(1) // x
     FrankList(size_type size); //O(n) // x
-    FrankList(size_type size, const_reference init); //O(n)
-    FrankList(const FrankList<value_type>& rhv); //O(n)
-    FrankList(FrankList<value_type>&& rhv); //O(1)
-    FrankList(std::initializer_list<value_type> init); //O(n)
+    FrankList(size_type size, const_reference init); //O(n) // x
+    FrankList(const FrankList<value_type>& rhv); //O(n) // x
+    FrankList(FrankList<value_type>&& rhv); //O(1) // x
+    FrankList(std::initializer_list<value_type> init); //O(n) // x
     template <typename input_iterator>
-    FrankList(input_iterator f, input_iterator l); //O(n)
+    FrankList(input_iterator f, input_iterator l); //O(n) // x
     ~FrankList();
 
 public:

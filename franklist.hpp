@@ -1,30 +1,10 @@
+#ifndef __FRANKLIST_HPP_IMPL__
+#define __FRANKLIST_HPP_IMPL__
+
+#include <stdexcept>
 #include "node.hpp"
 #include "iterators.hpp"
-
-
-template <typename T>
-FrankList<T>::FrankList()
-
-    : head{nullptr},
-    tail{nullptr},
-    ahead{nullptr},
-    atail{nullptr} {}
-
-template <typename T>
-FrankList<T>::FrankList(size_type size)
-
-    : head {new Node()},
-    tail{head},
-    ahead{nullptr},
-    atail{nullptr}
-{
-
-    for (int i = 1; i < size; i++)
-    {
-        tail->next = new Node();
-        tail = tail->next;
-    }
-}
+#include "__franklist_ctors.hpp"
 
 
 template <typename T>
@@ -45,10 +25,25 @@ typename FrankList<T>::size_type FrankList<T>::size() const
     return (lstsize);
 }
 
+
+template <typename T>
+void FrankList<T>::clear() noexcept
+{
+    for (Node* i = this->head; i != nullptr; )
+    {
+        auto tmp = ++i;
+        delete i;
+        i = tmp;
+    }
+}
+
 template <typename T>
 FrankList<T>::~FrankList()
 {
+    this->clear();
 	std::cout << "mah" << std::endl;
 
 }
 
+
+#endif // __FRANKLIST_HPP_IMPL__    
