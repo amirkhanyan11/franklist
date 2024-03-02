@@ -9,21 +9,21 @@ using namespace vhuk;
 
 int main()
 {
-	// std::size_t a = 5;
 
-	// FrankList<int> flist(a, 1);
+	FrankList<int> test;
 
-	FrankList<int> c = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+	test.push_front(99);
 
-	FrankList<int>::iterator f = c.begin();
-	FrankList<int>::iterator l = c.end();
+	test.pop_front();
 
-	FrankList<int> test(f, l);
-
-	for (auto i : test)
+	for (FrankList<int>::iterator i = test.begin(); i != test.end(); i++)
 	{
-		std::cout << i << std::endl;
+		std::cout << *i << std::endl;
 	}
+
+
+	// std::cout << "\nSize : " << test.size() << std::endl;
+
 
 	return 0;
 }

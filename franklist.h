@@ -292,16 +292,16 @@ public:
     ~FrankList();
 
 public:
-    void swap(FrankList<value_type>& rhv); //O(1)
+    void swap(FrankList<value_type>& rhv); //O(1) // x
 
-    size_type size() const; //O(n)
+    size_type size() const; //O(n) // x
 
-    bool empty() const; //O(1)
-    void resize(size_type s, const_reference init = value_type()); //O(n)
-    void clear() noexcept; //O(n)
+    bool empty() const; //O(1) // x
+    void resize(size_type s, const_reference init = value_type()); //O(n) // x
+    void clear() noexcept; //O(n) // x
 
-    void push_front(const_reference elem); //~O(1)
-    void pop_front(); //O(1)
+    void push_front(const_reference elem); //~O(1) // x
+    void pop_front(); //O(1) // x
     void push_back(const_reference elem); //~O(1)
     void pop_back(); //O(1)
 
@@ -314,9 +314,9 @@ public:
     const_reference max() const; //O(1)
     reference max(); //O(1)
 
-    const FrankList<value_type>& operator=(const FrankList<value_type>& rhv); //O(n)
-    const FrankList<value_type>& operator=(FrankList<value_type>&& rhv); //O(n)
-    const FrankList<value_type>& operator=(std::initializer_list<value_type> init); //O(n)
+    const FrankList<value_type>& operator=(const FrankList<value_type>& rhv); //O(n) // x
+    const FrankList<value_type>& operator=(FrankList<value_type>&& rhv); //O(n) // x
+    const FrankList<value_type>& operator=(std::initializer_list<value_type> init); //O(n) // x
 
     bool operator==(const FrankList<value_type>& rhv) const; //O(n)
     bool operator!=(const FrankList<value_type>& rhv) const; //O(n)

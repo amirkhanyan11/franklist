@@ -14,7 +14,7 @@ typename FrankList<T>::const_iterator FrankList<T>::cbegin() const
 template <typename T>
 typename FrankList<T>::const_iterator FrankList<T>::cend() const
 {
-	return (const_iterator(tail->next));
+	return (const_iterator(nullptr));
 }
 
 // const_reverse_iterator
@@ -119,7 +119,7 @@ typename FrankList<T>::iterator FrankList<T>::begin()
 template <typename T>
 typename FrankList<T>::iterator FrankList<T>::end()
 {
-	return (iterator(tail->next));
+	return (nullptr);
 }
 
 // reverse_iterator

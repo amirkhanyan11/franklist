@@ -139,4 +139,11 @@ FrankList<T>::FrankList(input_iterator f, input_iterator l)
 }
 
 
+template <typename T>
+FrankList<T>::~FrankList()
+{
+    this->clear();
+}
+
+
 #endif // __FRANKLIST_CTORS_HPP__
