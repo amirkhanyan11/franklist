@@ -31,7 +31,7 @@ void FrankList<T>::clear() noexcept
 {
     for (Node* i = this->head; i != nullptr; )
     {
-        auto tmp = ++i;
+        auto tmp = i->next;
         delete i;
         i = tmp;
     }
@@ -46,4 +46,4 @@ FrankList<T>::~FrankList()
 }
 
 
-#endif // __FRANKLIST_HPP_IMPL__    
+#endif // __FRANKLIST_HPP_IMPL__
