@@ -1,5 +1,5 @@
-
-
+#ifndef __MULTI_REVERSE_ITERATOR_HPP__
+#define __MULTI_REVERSE_ITERATOR_HPP__
 
 #include "franklist.h"
 
@@ -51,3 +51,5 @@ FrankList<T>::multi_reverse_iterator::multi_reverse_iterator(Node* ptr)
 {
     this->ptr = ptr;
 }
+
+#endif // __MULTI_REVERSE_ITERATOR_HPP__

@@ -1,4 +1,8 @@
 
+
+#ifndef __CONST_ASC_ITERATOR_HPP__
+#define __CONST_ASC_ITERATOR_HPP__
+
 #include "franklist.h"
 
 using namespace vhuk;
@@ -82,3 +86,5 @@ FrankList<T>::const_asc_iterator::const_asc_iterator(Node* ptr)
 {
 	this->ptr = ptr;
 }
+
+#endif // __CONST_ASC_ITERATOR_HPP__

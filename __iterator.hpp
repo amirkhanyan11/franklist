@@ -1,4 +1,8 @@
 
+
+#ifndef __ITERATOR_HPP__
+#define __ITERATOR_HPP__
+
 #include "franklist.h"
 
 using namespace vhuk;
@@ -49,3 +53,5 @@ FrankList<T>::iterator::iterator(Node* ptr)
 {
     this->ptr = ptr;
 }
+
+#endif // __ITERATOR_HPP__

@@ -1,4 +1,7 @@
 
+#ifndef __CONST_ITERATOR_HPP__
+#define __CONST_ITERATOR_HPP__
+
 #include "franklist.h"
 
 using namespace vhuk;
@@ -82,3 +85,5 @@ const typename FrankList<T>::const_iterator FrankList<T>::const_iterator::operat
 
     return (base_iterator(tmp));
 }
+
+#endif // __CONST_ITERATOR_HPP__

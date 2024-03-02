@@ -1,4 +1,6 @@
 
+#ifndef __CONST_MULTI_ITERATOR_HPP__
+#define __CONST_MULTI_ITERATOR_HPP__
 
 #include "franklist.h"
 
@@ -91,3 +93,5 @@ FrankList<T>::const_multi_iterator::const_multi_iterator(Node* ptr)
 {
     this->ptr = ptr;
 }
+
+#endif // __CONST_MULTI_ITERATOR_HPP__

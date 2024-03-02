@@ -1,4 +1,6 @@
 
+#ifndef __ASC_ITERATOR_HPP__
+#define __ASC_ITERATOR_HPP__
 
 #include "franklist.h"
 
@@ -50,3 +52,5 @@ FrankList<T>::asc_iterator::asc_iterator(Node* ptr)
 {
 	this->ptr = ptr;
 }
+
+#endif // __ASC_ITERATOR_HPP__

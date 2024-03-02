@@ -1,3 +1,6 @@
+#ifndef __CONST_REVERSE_ITERATOR_HPP__
+#define __CONST_REVERSE_ITERATOR_HPP__
+
 #include "franklist.h"
 
 using namespace vhuk;
@@ -81,3 +84,5 @@ FrankList<T>::const_reverse_iterator::const_reverse_iterator(Node* ptr)
 {
 	this->ptr = ptr;
 }
+
+#endif // __CONST_REVERSE_ITERATOR_HPP__
