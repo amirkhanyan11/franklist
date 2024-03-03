@@ -5,7 +5,8 @@
 #include "node.hpp"
 #include "iterators.hpp"
 #include "__franklist_ctors.hpp"
-
+#include "__franklist_operators.hpp"
+#include "insert.hpp"
 
 
 template <typename T>
@@ -53,42 +54,6 @@ void FrankList<T>::resize(size_type s, const_reference init)
 }
 
 
-template <typename T>
-const FrankList<T>& FrankList<T>::operator=(const FrankList<T>& rhv)
-{
-    *this = FrankList<T>(rhv);
-    return *this;
-}
-
-
-template <typename T>
-const FrankList<T>& FrankList<T>::operator=(FrankList<T>&& rhv)
-{
-    if (this != &rhv)
-    {
-        this->clear();
-        this->head = rhv.head;
-        this->tail = rhv.tail;
-        this->ahead = rhv.ahead;
-        this->atail = rhv.atail;
-
-        rhv.head = nullptr;
-        rhv.tail = nullptr;
-        rhv.ahead = nullptr;
-        rhv.atail = nullptr;
-    }
-    return *this;
-}
-
-template <typename T>
-const FrankList<T>& FrankList<T>::operator=(std::initializer_list<T> init)
-{
-    *this = FrankList<T>(init);
-    return *this;
-}
-
-
-
 
 template <typename T>
 void FrankList<T>::push_front(const_reference elem)
@@ -106,7 +71,6 @@ void FrankList<T>::push_front(const_reference elem)
         head = tmp;
     }
 }
-
 
 template <typename T>
 void FrankList<T>::pop_front()
@@ -126,6 +90,107 @@ void FrankList<T>::pop_front()
 
     delete tmp;
 }
+
+template <typename T>
+void FrankList<T>::push_back(const_reference elem)
+{
+    if (tail == nullptr)
+    {
+        tail = new Node(elem);
+        head = tail;
+    }
+    else
+    {
+        Node* tmp = new Node(elem);
+        tail->next = tmp;
+        tmp->prev = tail;
+        tail = tmp;
+    }
+}
+
+
+template <typename T>
+void FrankList<T>::pop_back()
+{
+    if (tail == nullptr)
+        return;
+    
+    Node* tmp = tail;
+
+    tail = tail->prev;
+
+    if (tail != nullptr)
+        tail->next = nullptr;
+
+    if (head == tmp)
+        head = tail;
+
+    delete tmp;
+}
+
+
+template <typename T>
+typename FrankList<T>::const_reference FrankList<T>::front() const
+{
+    return (this->head->val);
+}
+
+template <typename T>
+typename FrankList<T>::reference FrankList<T>::front()
+{
+    return (const_cast<reference>(
+    
+        static_cast<const FrankList<T>*>(this)->front()
+    ));
+}
+
+template <typename T>
+typename FrankList<T>::const_reference FrankList<T>::back() const
+{
+    return (this->tail->val);
+}
+
+template <typename T>
+typename FrankList<T>::reference FrankList<T>::back()
+{
+    return (const_cast<reference>(
+    
+        static_cast<const FrankList<T>*>(this)->back()
+    ));  
+}
+
+
+template <typename T>
+typename FrankList<T>::const_reference FrankList<T>::min() const
+{
+    return (this->ahead->val);
+}
+
+template <typename T>
+typename FrankList<T>::reference FrankList<T>::min()
+{
+    return (const_cast<reference>(
+    
+        static_cast<const FrankList<T>*>(this)->min()
+    ));      
+}
+
+
+template <typename T>
+typename FrankList<T>::const_reference FrankList<T>::max() const
+{
+    return (this->atail->val);
+}
+
+template <typename T>
+typename FrankList<T>::reference FrankList<T>::max()
+{
+    return (const_cast<reference>(
+    
+        static_cast<const FrankList<T>*>(this)->max()
+    ));    
+}
+
 
 
 #endif // __FRANKLIST_HPP_IMPL__

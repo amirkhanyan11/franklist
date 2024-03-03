@@ -35,7 +35,7 @@ FrankList<T>::FrankList(size_type size)
     for (int i = 1; i < size; i++)
     {
         tail->next = new Node();
-        tail->prev = tail;
+        tail->next->prev = tail;
         tail = tail->next;
     }
 }
@@ -60,7 +60,7 @@ FrankList<T>::FrankList(size_type size, const_reference init)
     for (int i = 1; i < size; i++)
     {
         tail->next = new Node(init);
-        tail->prev = tail;
+        tail->next->prev = tail;
         tail = tail->next;
     }
 }
@@ -76,7 +76,7 @@ FrankList<T>::FrankList(const FrankList<value_type>& rhv)
     for (auto i = ++rhv.cbegin(); i != rhv.cend(); i++)
     {
         tail->next = new Node(*i);
-        tail->prev = tail;
+        tail->next->prev = tail;
         tail = tail->next;       
     }
 }
@@ -108,7 +108,7 @@ FrankList<T>::FrankList(std::initializer_list<value_type> init)
     for (auto i = init.begin() + 1; i != init.end(); i++)
     {
         tail->next = new Node(*i);
-        tail->prev = tail;
+        tail->next->prev = tail;
         tail = tail->next;
     }
 }
@@ -118,7 +118,9 @@ template <class T>
 template <typename input_iterator>
 FrankList<T>::FrankList(input_iterator f, input_iterator l)
 
-    : ahead{nullptr},
+    : head{nullptr},
+    tail{nullptr}, 
+    ahead{nullptr},
     atail{nullptr}
 {
     if (!std::is_base_of<base_iterator, input_iterator>::value && 
@@ -127,14 +129,17 @@ FrankList<T>::FrankList(input_iterator f, input_iterator l)
         throw std::invalid_argument("Ivalid iterator type");
     }
 
-    head = new Node(*f);
-    tail = head;
-
-    for (FrankList<T>::const_iterator i = ++f; i != l; i++)
+    if (f != l)
     {
-        tail->next = new Node(*i);
-        tail->prev = tail;
-        tail = tail->next;
+        head = new Node(*f);
+        tail = head;
+
+        for (FrankList<T>::const_iterator i = ++f; i != l; i++)
+        {
+            tail->next = new Node(*i);
+            tail->next->prev = tail;
+            tail = tail->next;
+        }
     }
 }
 

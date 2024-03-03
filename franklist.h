@@ -263,21 +263,21 @@ public:
         bool mode = true;
     };
 public:
-    class multi_reverse_iterator : public const_multi_reverse_iterator
+    class multi_reverse_iterator : public const_multi_reverse_iterator // x
     {
         friend FrankList<value_type>;
     public:
-        multi_reverse_iterator(const base_iterator& rhv); //O(1)
-        multi_reverse_iterator(base_iterator&& rhv); //O(1)
+        multi_reverse_iterator(const base_iterator& rhv); //O(1) // x
+        multi_reverse_iterator(base_iterator&& rhv); //O(1) // x
 
-        reference operator*(); //O(1)
-        pointer operator->(); //O(1)
+        reference operator*(); //O(1) // x
+        pointer operator->(); //O(1) // x
 
-        const multi_reverse_iterator& operator=(const base_iterator& rhv); //O(1)
-        const multi_reverse_iterator& operator=(base_iterator&& rhv); //O(1)
+        const multi_reverse_iterator& operator=(const base_iterator& rhv); //O(1) // x
+        const multi_reverse_iterator& operator=(base_iterator&& rhv); //O(1) // x
 
     protected:
-        explicit multi_reverse_iterator(Node* ptr); //O(1)
+        explicit multi_reverse_iterator(Node* ptr); //O(1) // x
     };
 
 public:
@@ -302,28 +302,28 @@ public:
 
     void push_front(const_reference elem); //~O(1) // x
     void pop_front(); //O(1) // x
-    void push_back(const_reference elem); //~O(1)
-    void pop_back(); //O(1)
+    void push_back(const_reference elem); //~O(1) // x
+    void pop_back(); //O(1) // x
 
-    const_reference front() const; //O(1)
-    reference front(); //O(1)
-    const_reference back() const; //O(1)
-    reference back(); //O(1)
-    const_reference min() const; //O(1)
-    reference min(); //O(1)
-    const_reference max() const; //O(1)
-    reference max(); //O(1)
+    const_reference front() const; //O(1) // x
+    reference front(); //O(1) // x
+    const_reference back() const; //O(1) // x
+    reference back(); //O(1) // x
+    const_reference min() const; //O(1) // x
+    reference min(); //O(1) // x
+    const_reference max() const; //O(1) // x
+    reference max(); //O(1) // x
 
     const FrankList<value_type>& operator=(const FrankList<value_type>& rhv); //O(n) // x
     const FrankList<value_type>& operator=(FrankList<value_type>&& rhv); //O(n) // x
     const FrankList<value_type>& operator=(std::initializer_list<value_type> init); //O(n) // x
 
-    bool operator==(const FrankList<value_type>& rhv) const; //O(n)
-    bool operator!=(const FrankList<value_type>& rhv) const; //O(n)
-    bool operator<(const FrankList<value_type>& rhv) const; //O(n)
-    bool operator<=(const FrankList<value_type>& rhv) const; //O(n)
-    bool operator>(const FrankList<value_type>& rhv) const; //O(n)
-    bool operator>=(const FrankList<value_type>& rhv) const; //O(n)
+    bool operator==(const FrankList<value_type>& rhv) const; //O(n) // x
+    bool operator!=(const FrankList<value_type>& rhv) const; //O(n) // x
+    bool operator<(const FrankList<value_type>& rhv) const; //O(n) // x
+    bool operator<=(const FrankList<value_type>& rhv) const; //O(n) // x
+    bool operator>(const FrankList<value_type>& rhv) const; //O(n) // x
+    bool operator>=(const FrankList<value_type>& rhv) const; //O(n) // x
 
 public:
     const_iterator cbegin() const; //O(1) // x
@@ -380,11 +380,11 @@ public:
     }
 
     template <typename iter>
-    iter insert(iter pos, size_type size, const_reference val); //O(n)
+    iter insert(iter pos, size_type size, const_reference val); //O(n) // x
     template <typename iter>
-    iter insert(iter pos, std::initializer_list<value_type> init); //O(n)
+    iter insert(iter pos, std::initializer_list<value_type> init); //O(n) // x
     template <typename iter, typename input_iterator>
-    iter insert(iter pos, input_iterator f, input_iterator l); //O(n)
+    iter insert(iter pos, input_iterator f, input_iterator l); //O(n) // x
 
     template <typename iter>
     iter erase(iter pos); //O(1)
@@ -416,6 +416,7 @@ private:
 
     template <typename iter>
     iter insert_rev(iter pos, const_reference val); //O(1)
+
 
 private:
     Node* head;
