@@ -84,4 +84,5 @@ const typename FrankList<T>::const_iterator FrankList<T>::const_iterator::operat
     return (base_iterator(tmp));
 }
 
+
 #endif // __CONST_ITERATOR_HPP__

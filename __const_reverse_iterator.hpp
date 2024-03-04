@@ -54,7 +54,7 @@ const typename FrankList<T>::const_reverse_iterator FrankList<T>::const_reverse_
 {
     FrankList::Node* tmp = this->ptr;
 
-    --(*this);
+    ++(*this);
 
     return (base_iterator(tmp));
 }
@@ -72,15 +72,15 @@ const typename FrankList<T>::const_reverse_iterator FrankList<T>::const_reverse_
 {
     FrankList::Node* tmp = this->ptr;
 
-    ++(*this);
+    --(*this);
 
     return (base_iterator(tmp));
 }
 
 template <typename T>
 FrankList<T>::const_reverse_iterator::const_reverse_iterator(Node* ptr)
-{
-	this->ptr = ptr;
-}
+
+	: base_iterator{ptr}{}
+
 
 #endif // __CONST_REVERSE_ITERATOR_HPP__

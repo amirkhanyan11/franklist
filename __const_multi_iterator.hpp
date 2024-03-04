@@ -88,8 +88,9 @@ void FrankList<T>::const_multi_iterator::chmod()
 
 template <typename T>
 FrankList<T>::const_multi_iterator::const_multi_iterator(Node* ptr)
-{
-    this->ptr = ptr;
-}
+
+	: base_iterator{ptr}{}
+
+
 
 #endif // __CONST_MULTI_ITERATOR_HPP__

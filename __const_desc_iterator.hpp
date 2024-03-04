@@ -82,8 +82,9 @@ const typename FrankList<T>::const_desc_iterator FrankList<T>::const_desc_iterat
 
 template <typename T>
 FrankList<T>::const_desc_iterator::const_desc_iterator(Node* ptr)
-{
-	this->ptr = ptr;
-}
+
+	: base_iterator{ptr}{}
+
+
 
 #endif // __CONST_DESC_ITERATOR_HPP__

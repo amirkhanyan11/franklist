@@ -47,8 +47,14 @@ const typename FrankList<T>::asc_iterator& FrankList<T>::asc_iterator::operator=
 
 template <typename T>
 FrankList<T>::asc_iterator::asc_iterator(Node* ptr)
+
+	: const_asc_iterator{ptr}{}
+
+template <typename T>
+typename FrankList<T>::Node* FrankList<T>::asc_iterator::_ptr()
 {
-	this->ptr = ptr;
+	return (this->ptr);
 }
+
 
 #endif // __ASC_ITERATOR_HPP__

@@ -80,6 +80,11 @@ public:
 
         const iterator& operator=(const base_iterator& rhv); //O(1) // x
         const iterator& operator=(base_iterator&& rhv); //O(1) // x
+
+	private:
+
+		Node *_ptr();
+
     protected:
         explicit iterator(Node* ptr); //O(1) // x
     };
@@ -119,6 +124,10 @@ public:
         const reverse_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const reverse_iterator& operator=(base_iterator&& rhv); //O(1) // x
 
+	private:
+
+		Node *_ptr();
+
     protected:
         explicit reverse_iterator(Node* ptr); //O(1) // x
     };
@@ -156,6 +165,10 @@ public:
 
         const asc_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const asc_iterator& operator=(base_iterator&& rhv); //O(1) // x
+
+	private:
+
+		Node *_ptr();
 
     protected:
         explicit asc_iterator(Node* ptr); //O(1)
@@ -195,6 +208,10 @@ public:
         const desc_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const desc_iterator& operator=(base_iterator&& rhv); //O(1) // x
 
+	private:
+
+		Node *_ptr();
+
     protected:
         explicit desc_iterator(Node* ptr); //O(1) // x
     };
@@ -217,6 +234,7 @@ public:
         const const_multi_iterator operator--(value_type); //O(1) // x
 
         void chmod(); //O(1)
+
     protected:
         explicit const_multi_iterator(Node* ptr); //O(1) // x
         bool mode = true;
@@ -234,6 +252,10 @@ public:
 
         const multi_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const multi_iterator& operator=(base_iterator&& rhv); //O(1) // x
+
+	private:
+
+		Node *_ptr();
 
     protected:
         explicit multi_iterator(Node* ptr); //O(1) // x
@@ -258,6 +280,7 @@ public:
 
 
         void chmod(); //O(1)
+
     protected:
         explicit const_multi_reverse_iterator(Node* ptr); //O(1) // x
         bool mode = true;
@@ -275,6 +298,10 @@ public:
 
         const multi_reverse_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const multi_reverse_iterator& operator=(base_iterator&& rhv); //O(1) // x
+
+	private:
+
+		Node *_ptr();
 
     protected:
         explicit multi_reverse_iterator(Node* ptr); //O(1) // x
@@ -361,19 +388,37 @@ public:
     multi_reverse_iterator mrdend(); //O(1) // x
 
 public:
+    // template <typename iter>
+    // typename std::enable_if<std::is_base_of<const_iterator, iter>::value ||
+    //                           std::is_base_of<const_asc_iterator, iter>::value ||
+    //                           std::is_base_of<const_multi_iterator, iter>::value,
+    //          iter>::type
+    // insert(iter pos, const_reference val) { //O(1)
+    //     return insert_def(pos, val);
+    // }
+
+    // template <typename iter>
+    // typename std::enable_if<std::is_base_of<const_reverse_iterator, iter>::value ||
+    //                           std::is_base_of<const_desc_iterator, iter>::value ||
+    //                           std::is_base_of<const_multi_reverse_iterator, iter>::value,
+    //          iter>::type
+    // insert(iter pos, const_reference val) { //O(1)
+    //     return insert_rev(pos, val);
+    // }
+
     template <typename iter>
-    typename std::enable_if<std::is_base_of<const_iterator, iter>::value ||
-                              std::is_base_of<const_asc_iterator, iter>::value ||
-                              std::is_base_of<const_multi_iterator, iter>::value,
+    typename std::enable_if<std::is_same<iterator, iter>::value ||
+                              std::is_same<asc_iterator, iter>::value ||
+                              std::is_same<multi_iterator, iter>::value,
              iter>::type
     insert(iter pos, const_reference val) { //O(1)
         return insert_def(pos, val);
     }
 
     template <typename iter>
-    typename std::enable_if<std::is_base_of<const_reverse_iterator, iter>::value ||
-                              std::is_base_of<const_desc_iterator, iter>::value ||
-                              std::is_base_of<const_multi_reverse_iterator, iter>::value,
+    typename std::enable_if<std::is_same<reverse_iterator, iter>::value ||
+                              std::is_same<desc_iterator, iter>::value ||
+                              std::is_same<multi_reverse_iterator, iter>::value,
              iter>::type
     insert(iter pos, const_reference val) { //O(1)
         return insert_rev(pos, val);
@@ -395,11 +440,11 @@ public:
     template <typename unary_predicate>
     size_type remove_if(unary_predicate func); //O(n)
 
-    void reverse(); //O(n)
-    void sort(bool reversed = false); //O(n)
+    void reverse(); //O(n) // x
+    void sort(bool reversed = false); //O(n) // x
 
-    iterator find(const_reference elem); //O(n)
-    iterator rfind(const_reference elem); //O(n)
+    iterator find(const_reference elem); //O(n) // x
+    iterator rfind(const_reference elem); //O(n) // x
 
     template <typename unary_predicate>
     void traverse(unary_predicate func, bool sorted = false, bool reversed = false); //O(n)
@@ -407,15 +452,15 @@ public:
     void print(bool sorted = false, bool reversed = false); //O(n)
 
 protected:
-    void put_in_sorted_order(Node* ptr); //O(n)
-    void organize_left(Node* ptr); //O(1)
-    void organize_right(Node* ptr); //O(1)
+    void put_in_sorted_order(Node* ptr); //O(n) // x
+    void organize_left(Node* ptr); //O(1) // x
+    void organize_right(Node* ptr); //O(1) // x
 private:
     template <typename iter>
-    iter insert_def(iter pos, const_reference val); //O(1)
+    iter insert_def(iter pos, const_reference val); //O(1) // x
 
     template <typename iter>
-    iter insert_rev(iter pos, const_reference val); //O(1)
+    iter insert_rev(iter pos, const_reference val); //O(1) // x
 
 
 private:

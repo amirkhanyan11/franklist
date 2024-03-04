@@ -46,8 +46,13 @@ const typename FrankList<T>::multi_reverse_iterator& FrankList<T>::multi_reverse
 
 template <typename T>
 FrankList<T>::multi_reverse_iterator::multi_reverse_iterator(Node* ptr)
+
+	: const_multi_reverse_iterator{ptr}{}
+
+template <typename T>
+typename FrankList<T>::Node* FrankList<T>::multi_reverse_iterator::_ptr()
 {
-    this->ptr = ptr;
+	return (this->ptr);
 }
 
 #endif // __MULTI_REVERSE_ITERATOR_HPP__

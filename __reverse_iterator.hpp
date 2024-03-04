@@ -20,7 +20,7 @@ FrankList<T>::reverse_iterator::reverse_iterator(base_iterator&& rhv)
 template <typename T>
 typename FrankList<T>::reference FrankList<T>::reverse_iterator::operator*()
 {
-	return (const_cast<reference>((static_cast<const_reverse_iterator*>(*this)->operator*())));
+	return (const_cast<reference>((static_cast<const_reverse_iterator*>(this)->operator*())));
 }
 
 template <typename T>
@@ -47,8 +47,13 @@ const typename FrankList<T>::reverse_iterator& FrankList<T>::reverse_iterator::o
 
 template <typename T>
 FrankList<T>::reverse_iterator::reverse_iterator(Node* ptr)
+
+	: const_reverse_iterator{ptr}{}
+
+template <typename T>
+typename FrankList<T>::Node* FrankList<T>::reverse_iterator::_ptr()
 {
-	this->ptr = ptr;
+	return (this->ptr);
 }
 
 #endif // __REVERSE_ITERATOR_HPP__

@@ -18,10 +18,10 @@ FrankList<T>::FrankList()
 template <typename T>
 FrankList<T>::FrankList(size_type size)
 
-    : head {nullptr},
-    tail{nullptr},
-    ahead{nullptr},
-    atail{nullptr}
+    : head {new Node()},
+    tail{head},
+    ahead{head},
+    atail{head}
 {
 
     if (size == 0)
@@ -29,24 +29,19 @@ FrankList<T>::FrankList(size_type size)
         throw std::invalid_argument("Invalid size of 0");
     }
 
-    head = new Node();
-    tail = head;
-
     for (int i = 1; i < size; i++)
     {
-        tail->next = new Node();
-        tail->next->prev = tail;
-        tail = tail->next;
+        this->push_back(T{});
     }
 }
 
 template <typename T>
 FrankList<T>::FrankList(size_type size, const_reference init)
 
-    : head {nullptr},
-    tail{nullptr},
-    ahead{nullptr},
-    atail{nullptr}
+    : head {new Node(init)},
+    tail{head},
+    ahead{head},
+    atail{head}
 {
 
     if (size == 0)
@@ -54,14 +49,9 @@ FrankList<T>::FrankList(size_type size, const_reference init)
         throw std::invalid_argument("Invalid size of 0");
     }
 
-    head = new Node(init);
-    tail = head;
-
     for (int i = 1; i < size; i++)
     {
-        tail->next = new Node(init);
-        tail->next->prev = tail;
-        tail = tail->next;
+        this->push_back(init);
     }
 }
 
@@ -70,14 +60,12 @@ FrankList<T>::FrankList(const FrankList<value_type>& rhv)
 
     : head{new Node(rhv.head->val)},
     tail{head},
-    ahead{nullptr},
-    atail{nullptr}
+    ahead{head},
+    atail{head}
 {
     for (auto i = ++rhv.cbegin(); i != rhv.cend(); i++)
     {
-        tail->next = new Node(*i);
-        tail->next->prev = tail;
-        tail = tail->next;       
+        this->push_back(*i);
     }
 }
 
@@ -101,29 +89,27 @@ FrankList<T>::FrankList(std::initializer_list<value_type> init)
 
     : head{new Node(*init.begin())},
     tail{head},
-    ahead{nullptr},
-    atail{nullptr} 
+    ahead{head},
+    atail{head}
 {
 
     for (auto i = init.begin() + 1; i != init.end(); i++)
     {
-        tail->next = new Node(*i);
-        tail->next->prev = tail;
-        tail = tail->next;
+        this->push_back(*i);
     }
 }
 
 
-template <class T> 
+template <class T>
 template <typename input_iterator>
 FrankList<T>::FrankList(input_iterator f, input_iterator l)
 
-    : head{nullptr},
-    tail{nullptr}, 
-    ahead{nullptr},
-    atail{nullptr}
+    : head{new Node(*f)},
+    tail{head},
+    ahead{head},
+    atail{head}
 {
-    if (!std::is_base_of<base_iterator, input_iterator>::value && 
+    if (!std::is_base_of<base_iterator, input_iterator>::value &&
     !std::is_same<base_iterator, input_iterator>::value)
     {
         throw std::invalid_argument("Ivalid iterator type");
@@ -131,14 +117,10 @@ FrankList<T>::FrankList(input_iterator f, input_iterator l)
 
     if (f != l)
     {
-        head = new Node(*f);
-        tail = head;
 
-        for (FrankList<T>::const_iterator i = ++f; i != l; i++)
+        for (auto i = ++f; i != l; i++)
         {
-            tail->next = new Node(*i);
-            tail->next->prev = tail;
-            tail = tail->next;
+            this->push_back(*i);
         }
     }
 }

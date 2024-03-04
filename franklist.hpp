@@ -44,6 +44,10 @@ void FrankList<T>::clear() noexcept
         delete i;
         i = tmp;
     }
+	head = nullptr;
+	tail = nullptr;
+	ahead = nullptr;
+	atail = nullptr;
 }
 
 template <typename T>
@@ -58,18 +62,19 @@ void FrankList<T>::resize(size_type s, const_reference init)
 template <typename T>
 void FrankList<T>::push_front(const_reference elem)
 {
-    if (head == nullptr)
+    Node* tmp = new Node(elem);
+    if (this->empty())
     {
-        head = new Node(elem);
+        head = tmp;
         tail = head;
     }
     else
     {
-        Node* tmp = new Node(elem);
         head->prev = tmp;
         tmp->next = head;
         head = tmp;
     }
+	put_in_sorted_order(tmp);
 }
 
 template <typename T>
@@ -94,27 +99,29 @@ void FrankList<T>::pop_front()
 template <typename T>
 void FrankList<T>::push_back(const_reference elem)
 {
-    if (tail == nullptr)
+	Node* tmp = new Node(elem);
+
+    if (this->empty())
     {
-        tail = new Node(elem);
+        tail = tmp;
         head = tail;
     }
     else
     {
-        Node* tmp = new Node(elem);
         tail->next = tmp;
         tmp->prev = tail;
         tail = tmp;
     }
+	put_in_sorted_order(tmp);
 }
 
 
 template <typename T>
 void FrankList<T>::pop_back()
 {
-    if (tail == nullptr)
+    if (this->empty())
         return;
-    
+
     Node* tmp = tail;
 
     tail = tail->prev;
@@ -139,7 +146,7 @@ template <typename T>
 typename FrankList<T>::reference FrankList<T>::front()
 {
     return (const_cast<reference>(
-    
+
         static_cast<const FrankList<T>*>(this)->front()
     ));
 }
@@ -154,9 +161,9 @@ template <typename T>
 typename FrankList<T>::reference FrankList<T>::back()
 {
     return (const_cast<reference>(
-    
+
         static_cast<const FrankList<T>*>(this)->back()
-    ));  
+    ));
 }
 
 
@@ -170,9 +177,9 @@ template <typename T>
 typename FrankList<T>::reference FrankList<T>::min()
 {
     return (const_cast<reference>(
-    
+
         static_cast<const FrankList<T>*>(this)->min()
-    ));      
+    ));
 }
 
 
@@ -186,9 +193,9 @@ template <typename T>
 typename FrankList<T>::reference FrankList<T>::max()
 {
     return (const_cast<reference>(
-    
+
         static_cast<const FrankList<T>*>(this)->max()
-    ));    
+    ));
 }
 
 
