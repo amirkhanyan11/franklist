@@ -22,8 +22,7 @@ iter FrankList<T>::insert(iter pos, size_type size, const_reference val)
         while (size--)
             tmp.push_front(val);
 
-        for (FrankList<T>::iterator i = pos;
-            i != this->end(); ++i)
+        for (FrankList<T>::iterator i = pos; i != this->end(); ++i)
         {
             tmp.push_back(*i);
         }

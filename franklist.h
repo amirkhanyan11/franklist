@@ -411,7 +411,7 @@ public:
                               std::is_same<asc_iterator, iter>::value ||
                               std::is_same<multi_iterator, iter>::value,
              iter>::type
-    insert(iter pos, const_reference val) { //O(1)
+    insert(iter pos, const_reference val) { //O(1) // x
         return insert_def(pos, val);
     }
 
@@ -420,7 +420,7 @@ public:
                               std::is_same<desc_iterator, iter>::value ||
                               std::is_same<multi_reverse_iterator, iter>::value,
              iter>::type
-    insert(iter pos, const_reference val) { //O(1)
+    insert(iter pos, const_reference val) { //O(1) // x
         return insert_rev(pos, val);
     }
 
