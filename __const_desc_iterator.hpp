@@ -40,7 +40,7 @@ typename FrankList<T>::const_reference FrankList<T>::const_desc_iterator::operat
 template <typename T>
 typename FrankList<T>::const_pointer FrankList<T>::const_desc_iterator::operator->() const
 {
-	return (this->ptr);
+	return &(this->ptr->val);
 }
 
 

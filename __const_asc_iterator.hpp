@@ -30,7 +30,7 @@ const typename FrankList<T>::const_asc_iterator& FrankList<T>::const_asc_iterato
 {
     if (this != &rhv)
         this->ptr = rhv.ptr;
-    return *this;
+    return (*this);
 }
 
 template <typename T>
@@ -42,7 +42,7 @@ typename FrankList<T>::const_reference FrankList<T>::const_asc_iterator::operato
 template <typename T>
 typename FrankList<T>::const_pointer FrankList<T>::const_asc_iterator::operator->() const
 {
-	return (this->ptr);
+	return &(this->ptr->val);
 }
 
 template <typename T>

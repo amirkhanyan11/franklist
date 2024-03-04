@@ -39,7 +39,7 @@ typename FrankList<T>::const_reference FrankList<T>::const_reverse_iterator::ope
 template <typename T>
 typename FrankList<T>::const_pointer FrankList<T>::const_reverse_iterator::operator->() const
 {
-    return (this->ptr);
+	return &(this->ptr->val);
 }
 
 template <typename T>

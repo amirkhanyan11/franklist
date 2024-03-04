@@ -27,7 +27,7 @@ FrankList<T>::const_iterator::const_iterator(base_iterator&& rhv)
 template <typename T>
 const typename FrankList<T>::const_iterator& FrankList<T>::const_iterator::operator=(const base_iterator& rhv)
 {
-    this->ptr = rhv->ptr;
+    return (*this = std::move(rhv));
 }
 
 template <typename T>
@@ -35,7 +35,7 @@ const typename FrankList<T>::const_iterator& FrankList<T>::const_iterator::opera
 {
     if (this != &rhv)
         this->ptr = rhv.ptr;
-    return *this;
+    return (*this);
 }
 
 template <typename T>

@@ -40,7 +40,7 @@ typename FrankList<T>::const_reference FrankList<T>::const_multi_reverse_iterato
 template <typename T>
 typename FrankList<T>::const_pointer FrankList<T>::const_multi_reverse_iterator::operator->() const
 {
-    return (this->ptr);
+	return &(this->ptr->val);
 }
 
 
