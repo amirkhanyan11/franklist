@@ -139,7 +139,7 @@ iter FrankList<T>::erase(iter pos)
 		this->pop_back();
 	else
 	{
-		Node *tmp = pos.ptr;
+
 		pos.ptr->prev->next = pos.ptr->next;
 		pos.ptr->next->prev = pos.ptr->prev;
 
@@ -149,7 +149,7 @@ iter FrankList<T>::erase(iter pos)
 		if (pos.ptr != this->atail)
 			pos.ptr->asc->desc = pos.ptr->desc;
 		
-		delete tmp;
+		delete pos.ptr;
 
 	}
 	return pos;
