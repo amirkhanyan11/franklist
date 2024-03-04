@@ -145,9 +145,11 @@ iter FrankList<T>::erase(iter pos)
 
 		if (pos.ptr != this->ahead)
 			pos.ptr->desc->asc = pos.ptr->asc;
-			
+
 		if (pos.ptr != this->atail)
 			pos.ptr->asc->desc = pos.ptr->desc;
+		
+		delete tmp;
 
 	}
 	return pos;
