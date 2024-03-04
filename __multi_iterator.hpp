@@ -54,11 +54,6 @@ FrankList<T>::multi_iterator::multi_iterator(Node* ptr)
 
 	: const_multi_iterator{ptr}{}
 
-template <typename T>
-typename FrankList<T>::Node* FrankList<T>::multi_iterator::_ptr()
-{
-	return (this->ptr);
-}
 
 
 #endif // __MULTI_ITERATOR_HPP__

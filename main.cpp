@@ -10,15 +10,17 @@ using namespace vhuk;
 int main()
 {
 
-	FrankList<int> test = {8, 7, 6, 5, 2222, 0, -8};
+	// FrankList<int> test = {42, 8, 7, 6, 5, 2222, 0, -8};
+	FrankList<int> test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-	test.sort(true);
+	FrankList<int>::iterator i = test.begin();
+	FrankList<int>::iterator j = test.end();
 
-	for (FrankList<int>::iterator i = test.begin(); i != test.end(); i++)
-	{
-		std::cout << *i << "  ";
-	}
-	std::cout << std::endl;
+	test.remove_if([](int i){ return i % 2 == 0;});
+
+	test.print(test.begin(), test.end());
+
+	// std::cout << "\n" << test.size() << "\n";	
 
 	return 0;
 }

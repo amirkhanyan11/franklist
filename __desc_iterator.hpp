@@ -49,10 +49,5 @@ FrankList<T>::desc_iterator::desc_iterator(Node* ptr)
 
 	: const_desc_iterator{ptr}{}
 
-template <typename T>
-typename FrankList<T>::Node* FrankList<T>::desc_iterator::_ptr()
-{
-	return (this->ptr);
-}
 
 #endif // __DESC_ITERATOR_HPP__

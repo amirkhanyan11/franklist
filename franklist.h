@@ -81,9 +81,6 @@ public:
         const iterator& operator=(const base_iterator& rhv); //O(1) // x
         const iterator& operator=(base_iterator&& rhv); //O(1) // x
 
-	private:
-
-		Node *_ptr();
 
     protected:
         explicit iterator(Node* ptr); //O(1) // x
@@ -124,9 +121,6 @@ public:
         const reverse_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const reverse_iterator& operator=(base_iterator&& rhv); //O(1) // x
 
-	private:
-
-		Node *_ptr();
 
     protected:
         explicit reverse_iterator(Node* ptr); //O(1) // x
@@ -166,9 +160,6 @@ public:
         const asc_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const asc_iterator& operator=(base_iterator&& rhv); //O(1) // x
 
-	private:
-
-		Node *_ptr();
 
     protected:
         explicit asc_iterator(Node* ptr); //O(1)
@@ -208,9 +199,6 @@ public:
         const desc_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const desc_iterator& operator=(base_iterator&& rhv); //O(1) // x
 
-	private:
-
-		Node *_ptr();
 
     protected:
         explicit desc_iterator(Node* ptr); //O(1) // x
@@ -253,9 +241,6 @@ public:
         const multi_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const multi_iterator& operator=(base_iterator&& rhv); //O(1) // x
 
-	private:
-
-		Node *_ptr();
 
     protected:
         explicit multi_iterator(Node* ptr); //O(1) // x
@@ -299,9 +284,6 @@ public:
         const multi_reverse_iterator& operator=(const base_iterator& rhv); //O(1) // x
         const multi_reverse_iterator& operator=(base_iterator&& rhv); //O(1) // x
 
-	private:
-
-		Node *_ptr();
 
     protected:
         explicit multi_reverse_iterator(Node* ptr); //O(1) // x
@@ -432,13 +414,13 @@ public:
     iter insert(iter pos, input_iterator f, input_iterator l); //O(n) // x
 
     template <typename iter>
-    iter erase(iter pos); //O(1)
+    iter erase(iter pos); //O(1) // x
     template <typename iter>
-    iter erase(iter f, iter l); //O(n)
+    iter erase(iter f, iter l); //O(n) // x
 
-    size_type remove(const_reference val); //O(n)
+    size_type remove(const_reference val); //O(n) // x
     template <typename unary_predicate>
-    size_type remove_if(unary_predicate func); //O(n)
+    size_type remove_if(unary_predicate func); //O(n) // x
 
     void reverse(); //O(n) // x
     void sort(bool reversed = false); //O(n) // x
@@ -446,10 +428,34 @@ public:
     iterator find(const_reference elem); //O(n) // x
     iterator rfind(const_reference elem); //O(n) // x
 
-    template <typename unary_predicate>
-    void traverse(unary_predicate func, bool sorted = false, bool reversed = false); //O(n)
+    template <typename unary_predicate, typename iter>
+    typename std::enable_if<std::is_same<iterator, iter>::value ||
+                              std::is_same<asc_iterator, iter>::value ||
+                              std::is_same<reverse_iterator, iter>::value ||
+                              std::is_same<desc_iterator, iter>::value,
+             void>::type
+    traverse(unary_predicate func, iter f, iter l)
+    {
+        for (auto i = f; i != l; i++)
+            func(*i);
+    }
 
-    void print(bool sorted = false, bool reversed = false); //O(n)
+    template <typename iter>
+    typename std::enable_if<std::is_same<iterator, iter>::value ||
+                              std::is_same<asc_iterator, iter>::value ||
+                              std::is_same<reverse_iterator, iter>::value ||
+                              std::is_same<desc_iterator, iter>::value,
+             void>::type
+    print(iter f, iter l)
+    {
+        traverse([](const_reference i){std::cout << i << "  ";}, f, l);
+    }
+
+
+    template <typename unary_predicate>
+    void traverse(unary_predicate func, bool sorted = false, bool reversed = false); //O(n) // x
+
+    void print(bool sorted = false, bool reversed = false); //O(n) // x
 
 protected:
     void put_in_sorted_order(Node* ptr); //O(n) // x

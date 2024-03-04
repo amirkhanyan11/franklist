@@ -20,7 +20,7 @@ void FrankList<T>::swap(FrankList<value_type>& rhv)
 template <typename T>
 bool FrankList<T>::empty() const
 {
-    return (head == nullptr);
+    return (head == nullptr && tail == nullptr);
 }
 
 template <typename T>
@@ -80,7 +80,7 @@ void FrankList<T>::push_front(const_reference elem)
 template <typename T>
 void FrankList<T>::pop_front()
 {
-    if (head == nullptr)
+    if (this->empty())
         return;
 
     Node* tmp = head;
@@ -126,7 +126,7 @@ void FrankList<T>::pop_back()
 
     tail = tail->prev;
 
-    if (tail != nullptr)
+    if (!this->empty())
         tail->next = nullptr;
 
     if (head == tmp)
@@ -198,6 +198,29 @@ typename FrankList<T>::reference FrankList<T>::max()
     ));
 }
 
+template <typename T>
+template <typename unary_predicate>
+void FrankList<T>::traverse(unary_predicate func, bool sorted, bool reversed)
+{
+    if (sorted && reversed)
+        for (desc_iterator i = this->dbegin(); i != this->dend(); i++)
+            func(*i);
+    else if (sorted && !reversed)
+        for (asc_iterator i = this->abegin(); i != this->aend(); i++)
+            func(*i);
+    else if (!sorted && reversed)
+        for (reverse_iterator i = this->rbegin(); i != this->rend(); i++)
+            func(*i);
+    else
+        for (iterator i = this->begin(); i != this->end(); i++)
+            func(*i);
+}
+
+template <typename T>
+void FrankList<T>::print(bool sorted, bool reversed)
+{
+    traverse([](const_reference i){std::cout << i << "  ";}, sorted, reversed);
+}
 
 
 #endif // __FRANKLIST_HPP_IMPL__

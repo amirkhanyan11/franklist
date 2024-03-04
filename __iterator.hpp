@@ -47,10 +47,4 @@ template <typename T>
 FrankList<T>::iterator::iterator(Node* ptr)
 	: const_iterator(ptr){}
 
-template <typename T>
-typename FrankList<T>::Node* FrankList<T>::iterator::_ptr()
-{
-	return (this->ptr);
-}
-
 #endif // __ITERATOR_HPP__

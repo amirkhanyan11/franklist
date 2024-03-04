@@ -92,11 +92,11 @@ iter FrankList<T>::insert_def(iter pos, const_reference val)
 	else
 	{
 
-		tmp->next = pos._ptr()->next;
-		pos._ptr()->next->prev = tmp;
+		tmp->next = pos.ptr->next;
+		pos.ptr->next->prev = tmp;
 
-		pos._ptr()->next = tmp;
-		tmp->prev = pos._ptr();
+		pos.ptr->next = tmp;
+		tmp->prev = pos.ptr;
 
 		put_in_sorted_order(tmp);
 	}
@@ -115,17 +115,74 @@ iter FrankList<T>::insert_rev(iter pos, const_reference val)
 	else
 	{
 
-		tmp->prev = pos._ptr()->prev;
-		pos._ptr()->prev->next = tmp;
+		tmp->prev = pos.ptr->prev;
+		pos.ptr->prev->next = tmp;
 
-		pos._ptr()->prev = tmp;
-		tmp->next = pos._ptr();
+		pos.ptr->prev = tmp;
+		tmp->next = pos.ptr;
 
 		put_in_sorted_order(tmp);
 	}
     return iter(tmp);
 }
 
+
+template <typename T>
+template <typename iter>
+iter FrankList<T>::erase(iter pos)
+{
+	if (pos == iter(nullptr))
+		return pos;
+	if (pos == iter(this->head))
+		this->pop_front();
+	else if (pos == iter(this->tail))
+		this->pop_back();
+	else
+	{
+		Node *tmp = pos.ptr;
+		pos.ptr->prev->next = pos.ptr->next;
+		pos.ptr->desc->asc = pos.ptr->asc;
+	}
+	return pos;
+}
+
+template <typename T>
+template <typename iter>
+iter FrankList<T>::erase(iter f, iter l)
+{
+	for (iter i = f; i != l; )
+	{
+		iter j = i++;
+		erase(j);
+	}
+	return f;
+}
+
+
+template <typename T>
+typename FrankList<T>::size_type FrankList<T>::remove(const_reference val)
+{
+	return (this->erase(this->find(val)) == iterator(nullptr)) ? 0 : 1;
+}
+
+template <typename T>
+template <typename unary_predicate>
+typename FrankList<T>::size_type FrankList<T>::remove_if(unary_predicate func)
+{
+	size_type elements_removed = 0;
+
+	for (FrankList<T>::iterator i = this->begin(); i != this->end(); )
+	{
+		FrankList<T>::iterator j = i++;
+		if (func(*j) == true)
+		{
+			erase(j);
+			elements_removed++;
+		}
+	}
+
+	return (elements_removed);
+}
 
  // ORGANIZE METHODS
 template <typename T>
@@ -153,15 +210,15 @@ void FrankList<T>::put_in_sorted_order(Node* ptr)
 		this->organize_right(ptr);
 	else
 	{
-		for (FrankList<T>::asc_iterator i = this->abegin(), j{i._ptr()->asc};
+		for (FrankList<T>::asc_iterator i = this->abegin(), j{i.ptr->asc};
 			i != this->aend(); i++, j++)
 		{
 			if (*i < ptr->val && *j >= ptr->val)
 			{
-				i._ptr()->asc = ptr;
-				j._ptr()->desc = ptr;
-				ptr->desc = i._ptr();
-				ptr->asc = j._ptr();
+				i.ptr->asc = ptr;
+				j.ptr->desc = ptr;
+				ptr->desc = i.ptr;
+				ptr->asc = j.ptr;
 				break;
 			}
 		}
@@ -175,7 +232,14 @@ typename FrankList<T>::iterator FrankList<T>::find(const_reference elem)
 	for (FrankList<T>::iterator i = this->begin(); i != this->end(); i++)
 	{
 		if (*i == elem)
+		{
+			if (i != iterator(this->begin()))
+			{
+				iterator j = i--;
+				std::swap(*i, *j);
+			}
 			return (i);
+		}
 	}
 	return iterator(nullptr);
 }
@@ -186,7 +250,14 @@ typename FrankList<T>::iterator FrankList<T>::rfind(const_reference elem)
 	for (FrankList<T>::reverse_iterator i = this->rbegin(); i != this->rend(); i++)
 	{
 		if (*i == elem)
+		{
+			if (i != iterator(this->rbegin()))
+			{
+				reverse_iterator j = i--;
+				std::swap(*i, *j);
+			}
 			return (i);
+		}
 	}
 	return iterator(nullptr);
 }

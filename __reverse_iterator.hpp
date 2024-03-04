@@ -50,10 +50,5 @@ FrankList<T>::reverse_iterator::reverse_iterator(Node* ptr)
 
 	: const_reverse_iterator{ptr}{}
 
-template <typename T>
-typename FrankList<T>::Node* FrankList<T>::reverse_iterator::_ptr()
-{
-	return (this->ptr);
-}
 
 #endif // __REVERSE_ITERATOR_HPP__
