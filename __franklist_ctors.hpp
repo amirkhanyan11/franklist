@@ -1,11 +1,9 @@
 #ifndef __FRANKLIST_CTORS_HPP__
 #define __FRANKLIST_CTORS_HPP__
 
-
 #include <stdexcept>
 #include "node.hpp"
 #include "iterators.hpp"
-
 
 template <typename T>
 FrankList<T>::FrankList()
