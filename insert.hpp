@@ -123,6 +123,7 @@ iter FrankList<T>::insert_rev(iter pos, const_reference val)
 
 		put_in_sorted_order(tmp);
 	}
+    return iter(tmp);
 }
 
 
@@ -176,7 +177,7 @@ typename FrankList<T>::iterator FrankList<T>::find(const_reference elem)
 		if (*i == elem)
 			return (i);
 	}
-	return iterator();
+	return iterator(nullptr);
 }
 
 template <typename T>
@@ -187,7 +188,7 @@ typename FrankList<T>::iterator FrankList<T>::rfind(const_reference elem)
 		if (*i == elem)
 			return (i);
 	}
-	return iterator();
+	return iterator(nullptr);
 }
 
 
