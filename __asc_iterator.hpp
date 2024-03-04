@@ -1,11 +1,9 @@
-
 #ifndef __ASC_ITERATOR_HPP__
 #define __ASC_ITERATOR_HPP__
 
 #include "franklist.h"
 
 using namespace vhuk;
-
 
 template <typename T>
 FrankList<T>::asc_iterator::asc_iterator(const base_iterator& rhv)

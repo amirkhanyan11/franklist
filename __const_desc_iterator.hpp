@@ -1,11 +1,9 @@
 #ifndef __CONST_DESC_ITERATOR_HPP__
 #define __CONST_DESC_ITERATOR_HPP__
 
-
 #include "franklist.h"
 
 using namespace vhuk;
-
 
 template <typename T>
 FrankList<T>::const_desc_iterator::const_desc_iterator(const base_iterator& rhv)
@@ -42,8 +40,6 @@ typename FrankList<T>::const_pointer FrankList<T>::const_desc_iterator::operator
 {
 	return &(this->ptr->val);
 }
-
-
 
 template <typename T>
 const typename FrankList<T>::const_desc_iterator& FrankList<T>::const_desc_iterator::operator++()
@@ -84,7 +80,6 @@ template <typename T>
 FrankList<T>::const_desc_iterator::const_desc_iterator(Node* ptr)
 
 	: base_iterator{ptr}{}
-
 
 
 #endif // __CONST_DESC_ITERATOR_HPP__
