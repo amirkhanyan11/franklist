@@ -142,6 +142,9 @@ iter FrankList<T>::erase(iter pos)
 		Node *tmp = pos.ptr;
 		pos.ptr->prev->next = pos.ptr->next;
 		pos.ptr->desc->asc = pos.ptr->asc;
+		pos.ptr->next->prev = pos.ptr->prev;
+		pos.ptr->asc->desc = pos.ptr->desc;
+
 	}
 	return pos;
 }

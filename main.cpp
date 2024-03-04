@@ -16,9 +16,10 @@ int main()
 	FrankList<int>::iterator i = test.begin();
 	FrankList<int>::iterator j = test.end();
 
-	test.remove_if([](int i){ return i % 2 == 0;});
+	test.remove_if([](int i){return i % 2 == 0;});
 
 	test.print(test.begin(), test.end());
+	test.print(test.rbegin(), test.rend());
 
 	// std::cout << "\n" << test.size() << "\n";	
 
