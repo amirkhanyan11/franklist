@@ -36,18 +36,10 @@ template <typename T>
 template <typename iter>
 iter FrankList<T>::insert(iter pos, std::initializer_list<T> init)
 {
-    FrankList<T> tmp = FrankList<T>(this->begin(), pos);
-
     for (auto i : init)
-        tmp.push_back(i);
-
-    for (FrankList<T>::iterator i = pos;
-        i != this->end(); i++)
-    {
-        tmp.push_back(*i);
-    }
-    *this = std::move(tmp);
-
+	{
+		pos = this->insert(pos, i);
+	}
     return (pos);
 }
 
@@ -86,21 +78,25 @@ iter FrankList<T>::insert_def(iter pos, const_reference val)
 {
 	Node* tmp = new Node(val);
     if (pos == iter(this->begin()))
-        push_front(val);
-    else if (pos == iter(this->end()))
-        push_back(val);
-	else
 	{
-
-		tmp->next = pos.ptr->next;
-		pos.ptr->next->prev = tmp;
-
-		pos.ptr->next = tmp;
-		tmp->prev = pos.ptr;
-
-		put_in_sorted_order(tmp);
+        push_front(val);
+		return iter(head->next);
 	}
-	return (iter(tmp));
+    else if (pos == iter(this->end()))
+	{
+        push_back(val);
+		return iter(tail);
+	}
+
+	tmp->next = pos.ptr;
+	pos.ptr->prev->next = tmp;
+	
+	tmp->prev = pos.ptr->prev;
+	pos.ptr->prev = tmp;
+
+	put_in_sorted_order(tmp);
+	
+    return iter(tmp->next);
 }
 
 template <typename T>
@@ -108,22 +104,26 @@ template <typename iter>
 iter FrankList<T>::insert_rev(iter pos, const_reference val)
 {
 	Node* tmp = new Node(val);
-    if (pos == iter(this->begin()))
-        push_front(val);
-    else if (pos == iter(this->end()))
-        push_back(val);
-	else
+    if (pos == iter(this->rbegin()))
 	{
-
-		tmp->prev = pos.ptr->prev;
-		pos.ptr->prev->next = tmp;
-
-		pos.ptr->prev = tmp;
-		tmp->next = pos.ptr;
-
-		put_in_sorted_order(tmp);
+        push_back(val);
+		return iter(tail->prev);
 	}
-    return (tmp == this->front()) ? iter(tmp) : iter(tmp->prev);
+    else if (pos == iter(this->rend()))
+	{
+        push_front(val);
+		return iter(head);
+	}
+	tmp->prev = pos.ptr;
+	pos.ptr->next->prev = tmp;
+	
+	tmp->next = pos.ptr->next;
+	pos.ptr->next = tmp;
+
+	put_in_sorted_order(tmp);
+
+    return iter(tmp->prev);
+	
 }
 
 
@@ -299,10 +299,28 @@ void FrankList<T>::reverse()
 template <typename T>
 void FrankList<T>::sort(bool reversed)
 {
-	if (reversed)
-		*this = FrankList<T>(const_desc_iterator(this->cdbegin()), const_desc_iterator(this->cdend()));
+	if (!reversed)
+	{
+		head = ahead;
+		tail = head;
+
+		for (auto i = abegin(); i != aend(); i++)
+		{
+			tail->next = i.ptr->asc;
+			tail = tail->next;
+		}
+	}
 	else
-		*this = FrankList<T>(const_asc_iterator(this->cabegin()), this->caend());
+	{
+		head = atail;
+		tail = head;
+
+		for (auto i = dbegin(); i != dend(); i++)
+		{
+			tail->next = i.ptr->desc;
+			tail = tail->next;
+		}	
+	}
 }
 
 #endif // __INSERT_HPP__

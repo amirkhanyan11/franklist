@@ -142,7 +142,7 @@ void FrankList<T>::pop_back()
 
 
 template <typename T>
-void organize_pop(Node* ptr);
+void FrankList<T>::organize_pop(Node* ptr)
 {
 	if (ptr != this->ahead)
 		ptr->desc->asc = ptr->asc;
