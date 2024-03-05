@@ -261,7 +261,7 @@ typename FrankList<T>::iterator FrankList<T>::find(const_reference elem)
 			if (i != iterator(this->begin()))
 			{
 				iterator j = i--;
-				std::swap(*i, *j);
+				std::swap(i.ptr, j.ptr);
 			}
 			return (i);
 		}
@@ -279,7 +279,7 @@ typename FrankList<T>::iterator FrankList<T>::rfind(const_reference elem)
 			if (i != iterator(this->rbegin()))
 			{
 				reverse_iterator j = i--;
-				std::swap(*i, *j);
+				std::swap(i.ptr, j.ptr);
 			}
 			return (i);
 		}

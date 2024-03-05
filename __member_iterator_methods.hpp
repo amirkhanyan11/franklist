@@ -1,6 +1,6 @@
 #include "node.hpp"
 #include "iterators.hpp"
-
+#include <string>
 
 // CONSTANTS
 
@@ -14,7 +14,11 @@ typename FrankList<T>::const_iterator FrankList<T>::cbegin() const
 template <typename T>
 typename FrankList<T>::const_iterator FrankList<T>::cend() const
 {
-	return (tail == nullptr) ? const_iterator(nullptr) : (const_iterator(tail->next));
+	std::string message = "Attempted to call  on an empty string\n";
+	message.insert(message.find(" on"), __func__);
+	if (this->empty())
+		throw std::invalid_argument(message);
+	return const_iterator(tail->next);
 }
 
 // const_reverse_iterator
@@ -27,7 +31,11 @@ typename FrankList<T>::const_reverse_iterator FrankList<T>::crbegin() const
 template <typename T>
 typename FrankList<T>::const_reverse_iterator FrankList<T>::crend() const
 {
-	return (head == nullptr) ? const_reverse_iterator(nullptr) : (const_reverse_iterator(head->prev));
+	std::string message = "Attempted to call  on an empty string\n";
+	message.insert(message.find(" on"), __func__);
+	if (this->empty())
+		throw std::invalid_argument(message);
+	return const_reverse_iterator(head->prev);
 }
 
 // const_asc_iterator
@@ -40,7 +48,11 @@ typename FrankList<T>::const_asc_iterator FrankList<T>::cabegin() const
 template <typename T>
 typename FrankList<T>::const_asc_iterator FrankList<T>::caend() const
 {
-	return (atail == nullptr) ? const_asc_iterator(nullptr) : (const_asc_iterator(atail->asc));
+	std::string message = "Attempted to call  on an empty string\n";
+	message.insert(message.find(" on"), __func__);
+	if (this->empty())
+		throw std::invalid_argument(message);
+	return const_asc_iterator(atail->asc);
 }
 
 // const_desc_iterator
@@ -53,7 +65,11 @@ typename FrankList<T>::const_desc_iterator FrankList<T>::cdbegin() const
 template <typename T>
 typename FrankList<T>::const_desc_iterator FrankList<T>::cdend() const
 {
-	return (ahead == nullptr) ? const_desc_iterator(nullptr) : (const_desc_iterator(ahead->desc));
+	std::string message = "Attempted to call  on an empty string\n";
+	message.insert(message.find(" on"), __func__);
+	if (this->empty())
+		throw std::invalid_argument(message);
+	return const_desc_iterator(ahead->desc);
 }
 
 // const_multi_iterator
@@ -66,7 +82,11 @@ typename FrankList<T>::const_multi_iterator FrankList<T>::cmbegin() const
 template <typename T>
 typename FrankList<T>::const_multi_iterator FrankList<T>::cmend() const
 {
-	return (tail == nullptr) ? const_multi_iterator(nullptr) : (const_multi_iterator(tail->next));
+	std::string message = "Attempted to call  on an empty string\n";
+	message.insert(message.find(" on"), __func__);
+	if (this->empty())
+		throw std::invalid_argument(message);
+	return const_multi_iterator(tail->next);
 }
 
 template <typename T>
@@ -80,9 +100,15 @@ typename FrankList<T>::const_multi_iterator FrankList<T>::cmabegin() const
 template <typename T>
 typename FrankList<T>::const_multi_iterator FrankList<T>::cmaend() const
 {
+	std::string message = "Attempted to call  on an empty string\n";
+	message.insert(message.find(" on"), __func__);
+	if (this->empty())
+		throw std::invalid_argument(message);
+
 	auto iter = const_multi_iterator(atail->asc);
 	iter.chmod();
-	return (atail == nullptr) ? const_multi_iterator(nullptr) : (iter);
+
+	return iter;
 }
 
 // const_multi_reverse_iterator
@@ -95,7 +121,12 @@ typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrbegin() con
 template <typename T>
 typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrend() const
 {
-	return (head == nullptr) ? const_multi_reverse_iterator(nullptr) : const_multi_reverse_iterator(head->prev);
+	std::string message = "Attempted to call  on an empty string\n";
+	message.insert(message.find(" on"), __func__);
+	if (this->empty())
+		throw std::invalid_argument(message);
+		
+	return const_multi_reverse_iterator(head->prev);
 }
 
 template <typename T>
@@ -109,9 +140,15 @@ typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrdbegin() co
 template <typename T>
 typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrdend() const
 {
+	std::string message = "Attempted to call  on an empty string\n";
+	message.insert(message.find(" on"), __func__);
+	if (this->empty())
+		throw std::invalid_argument(message);
+
 	auto iter = const_multi_reverse_iterator(ahead->desc);
 	iter.chmod();
-	return (ahead == nullptr) ? const_multi_reverse_iterator(nullptr) : iter;
+
+	return iter;
 }
 
 

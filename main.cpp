@@ -11,7 +11,8 @@ int main()
 	// FrankList<int> test = {42, 8, 7, 6, 5, 2222, 0, -8, 12};
 	FrankList<int> test = {1, 2, 3, 4, 5, 6};
 
-	FrankList<int>::iterator i = test.end();
+	test.clear();
+	// FrankList<int>::iterator i = test.begin();
 	FrankList<int>::iterator j = test.end();
 
 	// FrankList<int>::const_reverse_iterator i = test.crbegin();
@@ -19,9 +20,8 @@ int main()
 
 	// test.remove_if([](int i){return i % 2 == 0;});
 
-	test.insert(i, {7, 8, 9});
 
-	test.print(test.begin(), test.end());
+	//test.print(i, j);
 
 	std::cout << std::endl;
 
