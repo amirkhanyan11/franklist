@@ -10,6 +10,16 @@
 
 
 template <typename T>
+std::ostream& operator<<(std::ostream& out, const FrankList<T>& rhv)
+{
+    for (typename FrankList<T>::const_iterator i = rhv.cbegin();i != rhv.cend(); i++)
+    {
+        out << *i << " ";
+    }
+    return out;
+}
+
+template <typename T>
 void FrankList<T>::swap(FrankList<value_type>& rhv)
 {
     FrankList<T> tmp = std::move(*this);
