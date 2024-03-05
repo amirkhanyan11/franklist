@@ -48,7 +48,7 @@ typename FrankList<T>::const_pointer FrankList<T>::const_multi_reverse_iterator:
 template <typename T>
 const typename FrankList<T>::const_multi_reverse_iterator& FrankList<T>::const_multi_reverse_iterator::operator++()
 {
-    this->ptr = (mode == true) ? this->ptr->prev : this->ptr->next;
+    this->ptr = (mode == true) ? this->ptr->prev : this->ptr->desc;
 	return (*this);
 }
 
@@ -57,7 +57,7 @@ const typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::const_mu
 {
     FrankList::Node* tmp = this->ptr;
 
-    --(*this);
+    ++(*this);
 
     return (base_iterator(tmp));
 }
@@ -65,7 +65,7 @@ const typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::const_mu
 template <typename T>
 const typename FrankList<T>::const_multi_reverse_iterator& FrankList<T>::const_multi_reverse_iterator::operator--()
 {
-    this->ptr = (mode == true) ? this->ptr->next : this->ptr->prev;
+    this->ptr = (mode == true) ? this->ptr->next : this->ptr->asc;
 
 	return (*this);
 }
@@ -75,7 +75,7 @@ const typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::const_mu
 {
     FrankList::Node* tmp = this->ptr;
 
-    ++(*this);
+    --(*this);
 
     return (base_iterator(tmp));
 }

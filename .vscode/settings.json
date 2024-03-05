@@ -78,6 +78,7 @@
 		"cwctype": "cpp",
 		"mutex": "cpp",
 		"ratio": "cpp",
-		"sstream": "cpp"
+		"sstream": "cpp",
+		"__functional_base_03": "cpp"
 	}
 }

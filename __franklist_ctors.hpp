@@ -85,13 +85,13 @@ FrankList<T>::FrankList(FrankList<value_type>&& rhv)
 template <typename T>
 FrankList<T>::FrankList(std::initializer_list<value_type> init)
 
-    : head{new Node(*init.begin())},
-    tail{head},
-    ahead{head},
-    atail{head}
+    : head{nullptr},
+    tail{nullptr},
+    ahead{nullptr},
+    atail{nullptr}
 {
 
-    for (auto i = init.begin() + 1; i != init.end(); i++)
+    for (auto i = init.begin(); i != init.end(); i++)
     {
         this->push_back(*i);
     }

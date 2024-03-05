@@ -145,10 +145,14 @@ iter FrankList<T>::erase(iter pos)
 
 		if (pos.ptr != this->ahead)
 			pos.ptr->desc->asc = pos.ptr->asc;
+		else
+			this->ahead = pos.ptr->asc;
 
 		if (pos.ptr != this->atail)
 			pos.ptr->asc->desc = pos.ptr->desc;
-		
+		else
+			this->tail = pos.ptr->desc;
+
 		delete pos.ptr;
 
 	}
@@ -213,25 +217,36 @@ void FrankList<T>::organize_right(Node* ptr)
 template <typename T>
 void FrankList<T>::put_in_sorted_order(Node* ptr)
 {
+	if (ahead == nullptr || atail == nullptr)
+	{
+		ahead = ptr;
+		atail = ptr;
+		return;
+	}
+
 	if (ptr->val < ahead->val)
 		this->organize_left(ptr);
-	else if (ptr->val > atail->val)
+
+	if (ptr->val > atail->val)
 		this->organize_right(ptr);
+
 	else
 	{
-		for (FrankList<T>::asc_iterator i = this->abegin(), j{i.ptr->asc};
-			i != this->aend(); i++, j++)
+		for (FrankList<T>::asc_iterator i = this->abegin();
+			i != this->aend() && i.ptr->asc != nullptr; i++)
 		{
-			if (*i < ptr->val && *j >= ptr->val)
+			if (*i < ptr->val && i.ptr->asc->val >= ptr->val)
 			{
+				ptr->asc = i.ptr->asc;
 				i.ptr->asc = ptr;
-				j.ptr->desc = ptr;
+
+				ptr->asc->desc = ptr;
 				ptr->desc = i.ptr;
-				ptr->asc = j.ptr;
 				break;
 			}
 		}
 	}
+
 }
 
 

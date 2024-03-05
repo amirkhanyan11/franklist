@@ -72,13 +72,17 @@ typename FrankList<T>::const_multi_iterator FrankList<T>::cmend() const
 template <typename T>
 typename FrankList<T>::const_multi_iterator FrankList<T>::cmabegin() const
 {
-	return const_multi_iterator(ahead);
+	auto iter = const_multi_iterator(ahead);
+	iter.chmod();
+	return iter;
 }
 
 template <typename T>
 typename FrankList<T>::const_multi_iterator FrankList<T>::cmaend() const
 {
-	return (atail == nullptr) ? const_multi_iterator(nullptr) : (const_multi_iterator(atail->asc));
+	auto iter = const_multi_iterator(atail->asc);
+	iter.chmod();
+	return (atail == nullptr) ? const_multi_iterator(nullptr) : (iter);
 }
 
 // const_multi_reverse_iterator
@@ -91,19 +95,23 @@ typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrbegin() con
 template <typename T>
 typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrend() const
 {
-	return (head == nullptr) ? const_multi_reverse_iterator(nullptr) : (const_multi_reverse_iterator(head->prev));
+	return (head == nullptr) ? const_multi_reverse_iterator(nullptr) : const_multi_reverse_iterator(head->prev);
 }
 
 template <typename T>
 typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrdbegin() const
 {
-	return const_multi_reverse_iterator(atail);
+	auto iter = const_multi_reverse_iterator(atail);
+	iter.chmod();
+	return iter;
 }
 
 template <typename T>
 typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrdend() const
 {
-	return (ahead == nullptr) ? const_multi_reverse_iterator(nullptr) : (const_multi_reverse_iterator(ahead->desc));
+	auto iter = const_multi_reverse_iterator(ahead->desc);
+	iter.chmod();
+	return (ahead == nullptr) ? const_multi_reverse_iterator(nullptr) : iter;
 }
 
 

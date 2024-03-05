@@ -10,18 +10,21 @@ using namespace vhuk;
 int main()
 {
 
-	// FrankList<int> test = {42, 8, 7, 6, 5, 2222, 0, -8};
-	FrankList<int> test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+	FrankList<int> test = {42, 8, 7, 6, 5, 2222, 0, -8, 12};
+	// FrankList<int> test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-	FrankList<int>::iterator i = test.begin();
-	FrankList<int>::iterator j = test.end();
+	FrankList<int>::const_multi_iterator i = test.cmbegin();
+	FrankList<int>::const_multi_iterator j = test.cmend();
 
-	test.remove_if([](int i){return i % 2 == 0;});
+	// FrankList<int>::const_reverse_iterator i = test.crbegin();
+	// FrankList<int>::const_reverse_iterator j = test.crend();
 
-	test.print(test.begin(), test.end());
-	test.print(test.rbegin(), test.rend());
+	// test.remove_if([](int i){return i % 2 == 0;});
 
-	// std::cout << "\n" << test.size() << "\n";	
+	test.print(i, j);
+
+	// for (FrankList<int>::reverse_iterator i = test.rbegin(); i != test.rend(); i++)
+	// 	std::cout << *i << "  ";
 
 	return 0;
 }

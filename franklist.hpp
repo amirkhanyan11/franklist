@@ -87,11 +87,15 @@ void FrankList<T>::pop_front()
 
     head = head->next;
 
-    if (tmp != this->ahead)
-    	tmp->desc->asc = tmp->asc; 
+	if (tmp != this->ahead)
+		tmp->desc->asc = tmp->asc;
+	else
+		this->ahead = tmp->asc;
+	if (tmp != this->atail)
+		tmp->asc->desc = tmp->desc;
+	else
+		this->tail = tmp->desc;
 
-    if (tmp != this->atail)
-    	tmp->asc->desc = tmp->desc;
 
     if (head != nullptr)
         head->prev = nullptr;
@@ -130,11 +134,14 @@ void FrankList<T>::pop_back()
 
     Node* tmp = tail;
 
-    if (tmp != this->ahead)
-    	tmp->desc->asc = tmp->asc;  
-        
-    if (tmp != this->atail)
-    	tmp->asc->desc = tmp->desc;
+	if (tmp != this->ahead)
+		tmp->desc->asc = tmp->asc;
+	else
+		this->ahead = tmp->asc;
+	if (tmp != this->atail)
+		tmp->asc->desc = tmp->desc;
+	else
+		this->tail = tmp->desc;
 
     tail = tail->prev;
 
