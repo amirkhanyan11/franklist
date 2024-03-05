@@ -4,7 +4,6 @@
 
 #include "franklist.h"
 
-using namespace vhuk;
 
 
 template <typename T>

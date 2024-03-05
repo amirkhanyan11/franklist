@@ -4,8 +4,6 @@
 
 #include "franklist.h"
 
-using namespace vhuk;
-
 template <typename T>
 FrankList<T>::Node::Node()
 

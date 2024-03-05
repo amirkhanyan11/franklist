@@ -3,9 +3,6 @@
 
 #include "franklist.h"
 
-using namespace vhuk;
-
-
 template <typename T>
 FrankList<T>::multi_reverse_iterator::multi_reverse_iterator(const base_iterator& rhv)
 

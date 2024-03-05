@@ -444,6 +444,9 @@ private:
 
 
 private:
+    void organize_pop(Node* ptr); //O(1)
+
+private:
     Node* head;
     Node* tail;
     Node* ahead;
@@ -451,9 +454,9 @@ private:
 };
 
 
+#include "franklist.hpp"
 
 }
 
-#include "franklist.hpp"
 
 #endif // _FRANKLIST_HPP__

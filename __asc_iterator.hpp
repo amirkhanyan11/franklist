@@ -3,8 +3,6 @@
 
 #include "franklist.h"
 
-using namespace vhuk;
-
 template <typename T>
 FrankList<T>::asc_iterator::asc_iterator(const base_iterator& rhv)
 

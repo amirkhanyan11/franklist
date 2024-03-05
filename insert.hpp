@@ -123,7 +123,7 @@ iter FrankList<T>::insert_rev(iter pos, const_reference val)
 
 		put_in_sorted_order(tmp);
 	}
-    return iter(tmp);
+    return (tmp == this->front()) ? iter(tmp) : iter(tmp->prev);
 }
 
 
@@ -139,19 +139,10 @@ iter FrankList<T>::erase(iter pos)
 		this->pop_back();
 	else
 	{
-
 		pos.ptr->prev->next = pos.ptr->next;
 		pos.ptr->next->prev = pos.ptr->prev;
 
-		if (pos.ptr != this->ahead)
-			pos.ptr->desc->asc = pos.ptr->asc;
-		else
-			this->ahead = pos.ptr->asc;
-
-		if (pos.ptr != this->atail)
-			pos.ptr->asc->desc = pos.ptr->desc;
-		else
-			this->tail = pos.ptr->desc;
+		this->organize_pop(pos.ptr);
 
 		delete pos.ptr;
 
@@ -175,7 +166,17 @@ iter FrankList<T>::erase(iter f, iter l)
 template <typename T>
 typename FrankList<T>::size_type FrankList<T>::remove(const_reference val)
 {
-	return (this->erase(this->find(val)) == iterator(nullptr)) ? 0 : 1;
+	size_type elements_removed = 0;
+
+	for (FrankList<T>::iterator i = this->begin; i != this->end(); i++)
+	{
+		if (*i == val)
+		{
+			erase(i);
+			elements_removed++;
+		}
+	}
+	return (elements_removed);
 }
 
 template <typename T>

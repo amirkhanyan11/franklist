@@ -53,8 +53,10 @@ void FrankList<T>::clear() noexcept
 template <typename T>
 void FrankList<T>::resize(size_type s, const_reference init)
 {
-    this->clear();
-    *this = FrankList<T>(s, init);
+    for (size_type i = 0; i < s; i++)
+    {
+        this->push_back(init);
+    }
 }
 
 
@@ -78,35 +80,6 @@ void FrankList<T>::push_front(const_reference elem)
 }
 
 template <typename T>
-void FrankList<T>::pop_front()
-{
-    if (this->empty())
-        return;
-
-    Node* tmp = head;
-
-    head = head->next;
-
-	if (tmp != this->ahead)
-		tmp->desc->asc = tmp->asc;
-	else
-		this->ahead = tmp->asc;
-	if (tmp != this->atail)
-		tmp->asc->desc = tmp->desc;
-	else
-		this->tail = tmp->desc;
-
-
-    if (head != nullptr)
-        head->prev = nullptr;
-
-    if (tail == tmp)
-        tail = head;
-
-    delete tmp;
-}
-
-template <typename T>
 void FrankList<T>::push_back(const_reference elem)
 {
 	Node* tmp = new Node(elem);
@@ -125,6 +98,26 @@ void FrankList<T>::push_back(const_reference elem)
 	put_in_sorted_order(tmp);
 }
 
+template <typename T>
+void FrankList<T>::pop_front()
+{
+    if (this->empty())
+        return;
+
+    Node* tmp = head;
+
+    head = head->next;
+
+    this->organize_pop(tmp);
+
+    if (head != nullptr)
+        head->prev = nullptr;
+
+    if (tail == tmp)
+        tail = head;
+
+    delete tmp;
+}
 
 template <typename T>
 void FrankList<T>::pop_back()
@@ -134,14 +127,7 @@ void FrankList<T>::pop_back()
 
     Node* tmp = tail;
 
-	if (tmp != this->ahead)
-		tmp->desc->asc = tmp->asc;
-	else
-		this->ahead = tmp->asc;
-	if (tmp != this->atail)
-		tmp->asc->desc = tmp->desc;
-	else
-		this->tail = tmp->desc;
+    this->organize_pop(tmp);
 
     tail = tail->prev;
 
@@ -154,6 +140,19 @@ void FrankList<T>::pop_back()
     delete tmp;
 }
 
+
+template <typename T>
+void organize_pop(Node* ptr);
+{
+	if (ptr != this->ahead)
+		ptr->desc->asc = ptr->asc;
+	else
+		this->ahead = ptr->asc;
+	if (ptr != this->atail)
+		ptr->asc->desc = ptr->desc;
+	else
+		this->tail = ptr->desc;
+}
 
 template <typename T>
 typename FrankList<T>::const_reference FrankList<T>::front() const

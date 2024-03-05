@@ -5,8 +5,6 @@
 
 #include "franklist.h"
 
-using namespace vhuk;
-
 
 template <typename T>
 FrankList<T>::multi_iterator::multi_iterator(const base_iterator& rhv)
