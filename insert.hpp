@@ -85,7 +85,7 @@ iter FrankList<T>::insert_def(iter pos, const_reference val)
     else if (pos == iter(this->end()))
 	{
         push_back(val);
-		return iter(tail);
+		return iter(tail->next);
 	}
 
 	tmp->next = pos.ptr;
@@ -112,7 +112,7 @@ iter FrankList<T>::insert_rev(iter pos, const_reference val)
     else if (pos == iter(this->rend()))
 	{
         push_front(val);
-		return iter(head);
+		return iter(head->prev);
 	}
 	tmp->prev = pos.ptr;
 	pos.ptr->next->prev = tmp;
