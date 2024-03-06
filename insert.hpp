@@ -93,7 +93,7 @@ iter FrankList<T>::insert_def(iter pos, const_reference val)
 	tmp->prev = pos.ptr->prev;
 	pos.ptr->prev = tmp;
 
-	put_in_sorted_order(tmp);
+	put_in_sorted_order(tmp); // not o1
 
     return iter(tmp->next);
 }
@@ -119,7 +119,7 @@ iter FrankList<T>::insert_rev(iter pos, const_reference val)
 	tmp->next = pos.ptr->next;
 	pos.ptr->next = tmp;
 
-	put_in_sorted_order(tmp);
+	put_in_sorted_order(tmp); // not o1
 
     return iter(tmp->prev);
 
