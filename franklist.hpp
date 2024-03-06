@@ -136,9 +136,9 @@ void FrankList<T>::pop_back()
 
     Node* tmp = tail;
 
-    this->organize_pop(tmp);
-
     tail = tail->prev;
+
+    this->organize_pop(tmp);
 
     if (tail != nullptr)
         tail->next = nullptr;

@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-namespace vhuk {
+// namespace vhuk {
 
 template <typename T>
 class FrankList;
@@ -457,7 +457,7 @@ private:
 
 #include "franklist.hpp"
 
-}
+// }
 
 
 #endif // _FRANKLIST_HPP__

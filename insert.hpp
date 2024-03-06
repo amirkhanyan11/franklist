@@ -3,7 +3,6 @@
 
 #include "franklist.h"
 
-
 template <typename T>
 template <typename iter>
 iter FrankList<T>::insert(iter pos, size_type size, const_reference val)
@@ -77,25 +76,25 @@ template <typename iter>
 iter FrankList<T>::insert_def(iter pos, const_reference val)
 {
 	Node* tmp = new Node(val);
-    if (pos == iter(this->begin()))
+    if (pos.ptr == head)
 	{
         push_front(val);
 		return iter(head->next);
 	}
-    else if (pos == iter(this->end()))
+    else if (pos.ptr == tail)
 	{
         push_back(val);
-		return iter(tail->next);
+		return iter(end());
 	}
 
 	tmp->next = pos.ptr;
 	pos.ptr->prev->next = tmp;
-	
+
 	tmp->prev = pos.ptr->prev;
 	pos.ptr->prev = tmp;
 
 	put_in_sorted_order(tmp);
-	
+
     return iter(tmp->next);
 }
 
@@ -104,26 +103,26 @@ template <typename iter>
 iter FrankList<T>::insert_rev(iter pos, const_reference val)
 {
 	Node* tmp = new Node(val);
-    if (pos == iter(this->rbegin()))
-	{
-        push_back(val);
-		return iter(tail->prev);
-	}
-    else if (pos == iter(this->rend()))
+    if (pos.ptr == head)
 	{
         push_front(val);
+		return iter(tail->prev);
+	}
+    else if (pos.ptr == tail)
+	{
+        push_back(val);
 		return iter(head->prev);
 	}
 	tmp->prev = pos.ptr;
 	pos.ptr->next->prev = tmp;
-	
+
 	tmp->next = pos.ptr->next;
 	pos.ptr->next = tmp;
 
 	put_in_sorted_order(tmp);
 
     return iter(tmp->prev);
-	
+
 }
 
 
@@ -204,27 +203,23 @@ typename FrankList<T>::size_type FrankList<T>::remove_if(unary_predicate func)
 template <typename T>
 void FrankList<T>::organize_left(Node* ptr)
 {
+	Node* to_swap = ptr->prev;
 
+
+	to_swap->next = ptr->next;
+	to_swap->prev->next = ptr;
+
+	ptr->next = to_swap;
+
+	ptr->prev = to_swap->prev;
+	to_swap->prev = ptr;
+	to_swap->next->prev = to_swap;
 }
 
 template <typename T>
 void FrankList<T>::organize_right(Node* ptr)
 {
-	if (ptr != atail)
-		ptr->asc->desc = ptr->next;
-	if (ptr->next != atail)
-		ptr->next->asc->desc = ptr;
 
-	std::swap(ptr->asc, ptr->next->asc);
-
-	if (ptr != ahead)
-		ptr->desc->asc = ptr->next;
-	if (ptr->next != ahead)
-		ptr->next->desc->asc = ptr;
-
-	std::swap(ptr->desc, ptr->next->desc);
-
-	std::swap(ptr->val, ptr->next->val);
 }
 
 template <typename T>
@@ -248,7 +243,7 @@ void FrankList<T>::put_in_sorted_order(Node* ptr)
 	{
 		ptr->desc = atail;
 		atail->asc = ptr;
-		atail = ptr;	
+		atail = ptr;
 	}
 
 	else
@@ -336,7 +331,7 @@ void FrankList<T>::sort(bool reversed)
 		{
 			tail->next = i.ptr->desc;
 			tail = tail->next;
-		}	
+		}
 	}
 }
 
