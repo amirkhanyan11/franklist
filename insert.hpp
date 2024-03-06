@@ -193,7 +193,6 @@ typename FrankList<T>::size_type FrankList<T>::remove_if(unary_predicate func)
 			elements_removed++;
 		}
 	}
-
 	return (elements_removed);
 }
 
@@ -205,21 +204,43 @@ void FrankList<T>::organize_left(Node* ptr)
 {
 	Node* to_swap = ptr->prev;
 
+	if (to_swap == head)
+		head = ptr;
+	else
+		to_swap->prev->next = ptr;
 
 	to_swap->next = ptr->next;
-	to_swap->prev->next = ptr;
-
 	ptr->next = to_swap;
 
 	ptr->prev = to_swap->prev;
 	to_swap->prev = ptr;
-	to_swap->next->prev = to_swap;
+
+	if (ptr == tail)
+		tail = to_swap;
+	else
+		to_swap->next->prev = to_swap;
 }
 
 template <typename T>
 void FrankList<T>::organize_right(Node* ptr)
 {
+	Node* to_swap = ptr->next;
 
+	if (to_swap == tail)
+		tail = ptr;
+	else
+		to_swap->next->prev = ptr;
+
+	to_swap->prev = ptr->prev;
+	ptr->prev = to_swap;
+
+	ptr->next = to_swap->next;
+	to_swap->next = ptr;
+
+	if (ptr == head)
+		head = to_swap;
+	else
+		to_swap->prev->next = to_swap;
 }
 
 template <typename T>
@@ -303,8 +324,19 @@ typename FrankList<T>::iterator FrankList<T>::rfind(const_reference elem)
 template <typename T>
 void FrankList<T>::reverse()
 {
-	*this = FrankList<T>(const_reverse_iterator(this->crbegin()),
-		const_reverse_iterator(this->crend()));
+	Node* t_tail = tail;
+
+	while (tail != nullptr)
+	{
+		std::swap(tail->next, tail->prev);
+		if (tail->next == nullptr)
+			break;
+		tail = tail->next;
+	}
+	tail->next = nullptr;
+	
+	head = t_tail;
+	head->prev = nullptr;
 }
 
 
@@ -314,25 +346,36 @@ void FrankList<T>::sort(bool reversed)
 	if (!reversed)
 	{
 		head = ahead;
+		head->prev = nullptr;
 		tail = head;
 
 		for (auto i = abegin(); i != aend(); i++)
 		{
 			tail->next = i.ptr->asc;
+			if (tail->next == nullptr)
+				break;
+			tail->next->prev = tail;
 			tail = tail->next;
+
 		}
 	}
 	else
 	{
 		head = atail;
 		tail = head;
+		tail->next = nullptr;
 
 		for (auto i = dbegin(); i != dend(); i++)
 		{
-			tail->next = i.ptr->desc;
-			tail = tail->next;
+			head->prev = i.ptr->desc;
+			if (head->prev == nullptr)
+				break;
+			head->prev->next = head;
+			head = head->prev;
+
 		}
 	}
+	
 }
 
 #endif // __INSERT_HPP__

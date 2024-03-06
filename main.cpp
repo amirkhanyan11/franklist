@@ -6,27 +6,33 @@
 int main()
 {
 
-	// FrankList<int> test = {42, 8, 7, 2, 5, 2222, 0, -8, 12};
-	FrankList<int> test = {1, 2, 3, 4, 5, 6};
+	FrankList<int> test = {42, 8, 7, 2, 5, 2222, 0, -8, 12};
+	// FrankList<int> test = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	// FrankList<int> test = {1, 2, 3}; // 3 2 1
 
 
 	// test.remove_if([](int i){return i % 2 == 0;});
 
 
-	auto i = test.begin();
-	auto j = test.end();
+	test.reverse();
+
+	auto i = test.dbegin();
+	auto j = test.dend();
 
 
-	for (int count = 0; count < 10; count++)
-	{
-		test.find(5);
-		i = test.begin();
-		j = test.end();
-		test.print(i, j);
-		std::cout << std::endl;
-		std::cout << std::endl;
-	}
+	 test.print(i, j);
 
+
+
+	// for (int count = 0; count < 10; count++)
+	// {
+	// 	test.rfind(1);
+	// 	i = test.rbegin();
+	// 	j = test.rend();
+	// 	test.print(i, j); // oke oke
+	// 	std::cout << std::endl;
+	// 	std::cout << std::endl;
+	// }
 
 
 
