@@ -6,21 +6,23 @@
 int main()
 {
 
-	FrankList<int> test = {42, 8, 7, 2, 5, 2222, 0, -8, 12};
+	// FrankList<int> test = {42, 8, 7, 2, 5, 2222, 0, -8, 12};
 	// FrankList<int> test = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	// FrankList<int> test = {1, 2, 3}; // 3 2 1
+	FrankList<int> test = {1, 2, 3}; // 3 2 1
 
 
 	// test.remove_if([](int i){return i % 2 == 0;});
 
 
-	test.reverse();
-
-	auto i = test.dbegin();
-	auto j = test.dend();
+	test.insert(FrankList<int>::reverse_iterator(test.find(1)), {7, 8, 9});
 
 
-	 test.print(i, j);
+
+	auto i = test.begin();
+	auto j = test.end();
+
+
+	test.print(i, j);
 
 
 

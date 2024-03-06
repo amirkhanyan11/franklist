@@ -8,7 +8,7 @@ template <typename iter>
 iter FrankList<T>::insert(iter pos, size_type size, const_reference val)
 {
 
-    if (pos == iter(this->begin()))
+    if (pos == iter(this->begin())) // change those
         while (size--)
             push_front(val);
     else if (pos == iter(this->end()))
@@ -84,7 +84,7 @@ iter FrankList<T>::insert_def(iter pos, const_reference val)
     else if (pos.ptr == tail)
 	{
         push_back(val);
-		return iter(end());
+		return iter(tail);
 	}
 
 	tmp->next = pos.ptr;
@@ -106,12 +106,12 @@ iter FrankList<T>::insert_rev(iter pos, const_reference val)
     if (pos.ptr == head)
 	{
         push_front(val);
-		return iter(tail->prev);
+		return iter(head);
 	}
     else if (pos.ptr == tail)
 	{
         push_back(val);
-		return iter(head->prev);
+		return iter(tail->prev);
 	}
 	tmp->prev = pos.ptr;
 	pos.ptr->next->prev = tmp;
