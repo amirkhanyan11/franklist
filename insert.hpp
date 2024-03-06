@@ -198,21 +198,33 @@ typename FrankList<T>::size_type FrankList<T>::remove_if(unary_predicate func)
 	return (elements_removed);
 }
 
+
+
  // ORGANIZE METHODS
 template <typename T>
 void FrankList<T>::organize_left(Node* ptr)
 {
-	ptr->asc = ahead;
-	ahead->desc = ptr;
-	ahead = ptr;
+
 }
 
 template <typename T>
 void FrankList<T>::organize_right(Node* ptr)
 {
-	ptr->desc = atail;
-	atail->asc = ptr;
-	atail = ptr;
+	if (ptr != atail)
+		ptr->asc->desc = ptr->next;
+	if (ptr->next != atail)
+		ptr->next->asc->desc = ptr;
+
+	std::swap(ptr->asc, ptr->next->asc);
+
+	if (ptr != ahead)
+		ptr->desc->asc = ptr->next;
+	if (ptr->next != ahead)
+		ptr->next->desc->asc = ptr;
+
+	std::swap(ptr->desc, ptr->next->desc);
+
+	std::swap(ptr->val, ptr->next->val);
 }
 
 template <typename T>
@@ -226,10 +238,18 @@ void FrankList<T>::put_in_sorted_order(Node* ptr)
 	}
 
 	if (ptr->val < ahead->val)
-		this->organize_left(ptr);
+	{
+		ptr->asc = ahead;
+		ahead->desc = ptr;
+		ahead = ptr;
+	}
 
 	if (ptr->val > atail->val)
-		this->organize_right(ptr);
+	{
+		ptr->desc = atail;
+		atail->asc = ptr;
+		atail = ptr;	
+	}
 
 	else
 	{
@@ -250,7 +270,6 @@ void FrankList<T>::put_in_sorted_order(Node* ptr)
 
 }
 
-
 template <typename T>
 typename FrankList<T>::iterator FrankList<T>::find(const_reference elem)
 {
@@ -260,8 +279,7 @@ typename FrankList<T>::iterator FrankList<T>::find(const_reference elem)
 		{
 			if (i != iterator(this->begin()))
 			{
-				iterator j = i--;
-				std::swap(i.ptr, j.ptr);
+				organize_left(i.ptr);
 			}
 			return (i);
 		}
@@ -278,8 +296,7 @@ typename FrankList<T>::iterator FrankList<T>::rfind(const_reference elem)
 		{
 			if (i != iterator(this->rbegin()))
 			{
-				reverse_iterator j = i--;
-				std::swap(i.ptr, j.ptr);
+				organize_right(i.ptr);
 			}
 			return (i);
 		}

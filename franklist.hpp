@@ -8,7 +8,6 @@
 #include "__franklist_operators.hpp"
 #include "insert.hpp"
 
-
 template <typename T>
 std::ostream& operator<<(std::ostream& out, const FrankList<T>& rhv)
 {

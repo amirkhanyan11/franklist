@@ -446,6 +446,7 @@ private:
 private:
     void organize_pop(Node* ptr); //O(1)
 
+
 private:
     Node* head;
     Node* tail;
