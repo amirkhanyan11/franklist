@@ -445,7 +445,7 @@ private:
 
 private:
     void organize_pop(Node* ptr); //O(1)
-
+    std::string error_message(char const * const func) const;
 
 private:
     Node* head;

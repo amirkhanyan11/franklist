@@ -16,13 +16,13 @@ int main()
 
 	test.insert(FrankList<int>::reverse_iterator(test.find(1)), {7, 8, 9});
 
-
+	test.clear();
 
 	auto i = test.begin();
-	auto j = test.end();
+	auto j = test.cmaend();
 
 
-	test.print(i, j);
+	// test.print(i, j);
 
 
 

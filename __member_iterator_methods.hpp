@@ -4,6 +4,16 @@
 
 // CONSTANTS
 
+
+template <typename T>
+std::string FrankList<T>::error_message(char const * const func) const
+{
+	std::string message = "Attempted to call  on an empty string\n";
+	message.insert(message.find(" on"), func);
+	return std::move(message);
+}
+
+
 // const_iterator
 template <typename T>
 typename FrankList<T>::const_iterator FrankList<T>::cbegin() const
@@ -14,10 +24,8 @@ typename FrankList<T>::const_iterator FrankList<T>::cbegin() const
 template <typename T>
 typename FrankList<T>::const_iterator FrankList<T>::cend() const
 {
-	std::string message = "Attempted to call  on an empty string\n";
-	message.insert(message.find(" on"), __func__);
 	if (this->empty())
-		throw std::invalid_argument(message);
+		throw std::invalid_argument(error_message(__func__));
 	return const_iterator(tail->next);
 }
 
@@ -31,10 +39,8 @@ typename FrankList<T>::const_reverse_iterator FrankList<T>::crbegin() const
 template <typename T>
 typename FrankList<T>::const_reverse_iterator FrankList<T>::crend() const
 {
-	std::string message = "Attempted to call  on an empty string\n";
-	message.insert(message.find(" on"), __func__);
 	if (this->empty())
-		throw std::invalid_argument(message);
+		throw std::invalid_argument(error_message(__func__));
 	return const_reverse_iterator(head->prev);
 }
 
@@ -48,10 +54,8 @@ typename FrankList<T>::const_asc_iterator FrankList<T>::cabegin() const
 template <typename T>
 typename FrankList<T>::const_asc_iterator FrankList<T>::caend() const
 {
-	std::string message = "Attempted to call  on an empty string\n";
-	message.insert(message.find(" on"), __func__);
 	if (this->empty())
-		throw std::invalid_argument(message);
+		throw std::invalid_argument(error_message(__func__));
 	return const_asc_iterator(atail->asc);
 }
 
@@ -65,10 +69,8 @@ typename FrankList<T>::const_desc_iterator FrankList<T>::cdbegin() const
 template <typename T>
 typename FrankList<T>::const_desc_iterator FrankList<T>::cdend() const
 {
-	std::string message = "Attempted to call  on an empty string\n";
-	message.insert(message.find(" on"), __func__);
 	if (this->empty())
-		throw std::invalid_argument(message);
+		throw std::invalid_argument(error_message(__func__));
 	return const_desc_iterator(ahead->desc);
 }
 
@@ -82,10 +84,8 @@ typename FrankList<T>::const_multi_iterator FrankList<T>::cmbegin() const
 template <typename T>
 typename FrankList<T>::const_multi_iterator FrankList<T>::cmend() const
 {
-	std::string message = "Attempted to call  on an empty string\n";
-	message.insert(message.find(" on"), __func__);
 	if (this->empty())
-		throw std::invalid_argument(message);
+		throw std::invalid_argument(error_message(__func__));
 	return const_multi_iterator(tail->next);
 }
 
@@ -100,10 +100,9 @@ typename FrankList<T>::const_multi_iterator FrankList<T>::cmabegin() const
 template <typename T>
 typename FrankList<T>::const_multi_iterator FrankList<T>::cmaend() const
 {
-	std::string message = "Attempted to call  on an empty string\n";
-	message.insert(message.find(" on"), __func__);
+
 	if (this->empty())
-		throw std::invalid_argument(message);
+		throw std::invalid_argument(error_message(__func__));
 
 	auto iter = const_multi_iterator(atail->asc);
 	iter.chmod();
@@ -121,10 +120,8 @@ typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrbegin() con
 template <typename T>
 typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrend() const
 {
-	std::string message = "Attempted to call  on an empty string\n";
-	message.insert(message.find(" on"), __func__);
 	if (this->empty())
-		throw std::invalid_argument(message);
+		throw std::invalid_argument(error_message(__func__));
 		
 	return const_multi_reverse_iterator(head->prev);
 }
@@ -140,10 +137,8 @@ typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrdbegin() co
 template <typename T>
 typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::cmrdend() const
 {
-	std::string message = "Attempted to call  on an empty string\n";
-	message.insert(message.find(" on"), __func__);
 	if (this->empty())
-		throw std::invalid_argument(message);
+		throw std::invalid_argument(error_message(__func__));
 
 	auto iter = const_multi_reverse_iterator(ahead->desc);
 	iter.chmod();
