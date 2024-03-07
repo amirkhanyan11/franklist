@@ -16,10 +16,10 @@ FrankList<T>::FrankList()
 template <typename T>
 FrankList<T>::FrankList(size_type size)
 
-    : head {new Node()},
-    tail{head},
-    ahead{head},
-    atail{head}
+    : head {nullptr},
+    tail{nullptr},
+    ahead{nullptr},
+    atail{nullptr}
 {
 
     if (size == 0)
@@ -27,7 +27,7 @@ FrankList<T>::FrankList(size_type size)
         throw std::invalid_argument("Invalid size of 0");
     }
 
-    for (int i = 1; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         this->push_back(T{});
     }
@@ -36,10 +36,10 @@ FrankList<T>::FrankList(size_type size)
 template <typename T>
 FrankList<T>::FrankList(size_type size, const_reference init)
 
-    : head {new Node(init)},
-    tail{head},
-    ahead{head},
-    atail{head}
+    : head {nullptr},
+    tail{nullptr},
+    ahead{nullptr},
+    atail{nullptr}
 {
 
     if (size == 0)
@@ -47,7 +47,7 @@ FrankList<T>::FrankList(size_type size, const_reference init)
         throw std::invalid_argument("Invalid size of 0");
     }
 
-    for (int i = 1; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         this->push_back(init);
     }
@@ -56,7 +56,7 @@ FrankList<T>::FrankList(size_type size, const_reference init)
 template <typename T>
 FrankList<T>::FrankList(const FrankList<value_type>& rhv)
 
-    : head{new Node(rhv.head->val)},
+    : head{nullptr},
     tail{head},
     ahead{head},
     atail{head}
@@ -102,10 +102,10 @@ template <class T>
 template <typename input_iterator>
 FrankList<T>::FrankList(input_iterator f, input_iterator l)
 
-    : head{new Node(*f)},
-    tail{head},
-    ahead{head},
-    atail{head}
+    : head{nullptr},
+    tail{nullptr},
+    ahead{nullptr},
+    atail{nullptr}
 {
     if (!std::is_base_of<base_iterator, input_iterator>::value &&
     !std::is_same<base_iterator, input_iterator>::value)
@@ -116,7 +116,7 @@ FrankList<T>::FrankList(input_iterator f, input_iterator l)
     if (f != l)
     {
 
-        for (auto i = ++f; i != l; i++)
+        for (auto i = f; i != l; i++)
         {
             this->push_back(*i);
         }

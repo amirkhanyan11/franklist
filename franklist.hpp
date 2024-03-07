@@ -64,7 +64,8 @@ void FrankList<T>::resize(size_type s, const_reference init)
 {
     for (size_type i = 0; i < s; i++)
     {
-        this->push_back(init);
+        this->push_back(init); /* stl's resize works different but it also has more overloads,
+								so mine augments the list */
     }
 }
 

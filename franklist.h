@@ -411,7 +411,7 @@ public:
     iterator rfind(const_reference elem); //O(n)
 
     template <typename unary_predicate, typename iter>
-    typename std::enable_if<std::is_base_of<base_iterator, iter>::value,void>::type
+    typename std::enable_if<std::is_base_of<base_iterator, iter>::value, void>::type
     traverse(unary_predicate func, iter f, iter l)
     {
         for (auto i = f; i != l; i++)
@@ -419,7 +419,7 @@ public:
     }
 
     template <typename iter>
-    typename std::enable_if<std::is_base_of<base_iterator, iter>::value,void>::type
+    typename std::enable_if<std::is_base_of<base_iterator, iter>::value, void>::type
     print(iter f, iter l)
     {
         traverse([](const_reference i){std::cout << i << "  ";}, f, l);

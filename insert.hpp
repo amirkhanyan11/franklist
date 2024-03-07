@@ -35,11 +35,7 @@ template <typename T>
 template <typename iter>
 iter FrankList<T>::insert(iter pos, std::initializer_list<T> init)
 {
-    for (auto i : init)
-	{
-		pos = this->insert(pos, i);
-	}
-    return (pos);
+    return insert(pos, init.begin(), init.end());
 }
 
 
@@ -47,28 +43,12 @@ template <typename T>
 template <typename iter, typename input_iterator>
 iter FrankList<T>::insert(iter pos, input_iterator f, input_iterator l)
 {
-    FrankList<T> tmp = FrankList<T>(this->begin(), pos);
-
-    if (f != l)
-    {
-
-        size_type count = 0;
-
-        for (input_iterator i = f; i != l; i++)
-            count++;
-
-        tmp.push_back(count);
-    }
-
-    for (FrankList<T>::iterator i = pos;
-        i != this->end(); i++)
-    {
-        tmp.push_back(*i);
-    }
-
-    *this = std::move(tmp);
-
-    return (pos);
+	while (f != l)
+	{
+		this->insert(pos, *f);
+		f++;
+	}
+	return (pos); // ?
 }
 
 template <typename T>
