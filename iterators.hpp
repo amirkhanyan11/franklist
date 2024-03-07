@@ -39,5 +39,13 @@ FrankList<T>::base_iterator::base_iterator(Node* ptr)
 template <typename T>
 FrankList<T>::base_iterator::~base_iterator() = default;
 
+template <typename T>
+std::string FrankList<T>::base_iterator::error_message(const std::type_info& info, char const * const func) const
+{
+    std::string error_class = info.name();
+    std::string message = error_class + "::" + func + " attempted to dereference a nullptr\n";
+	return std::move(message);
+}
+
 
 #endif // __ITERATORS_HPP__

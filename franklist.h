@@ -44,6 +44,9 @@ private:
         explicit base_iterator(Node* ptr); //O(1)
     protected:
         Node* ptr = nullptr;
+
+    private:
+        std::string error_message(const std::type_info& info, char const * const func) const;
     };
 public:
     class const_iterator : public base_iterator
@@ -445,7 +448,6 @@ private:
 
 private:
     void organize_pop(Node* ptr); //O(1)
-    std::string error_message(char const * const func) const;
 
 private:
     Node* head;

@@ -36,13 +36,21 @@ const typename FrankList<T>::const_reverse_iterator&  FrankList<T>::const_revers
 template <typename T>
 typename FrankList<T>::const_reference FrankList<T>::const_reverse_iterator::operator*() const
 {
+    if (this->ptr == nullptr)
+    {
+        throw std::logic_error(this->error_message(typeid(*this), __func__));
+    }
     return (this->ptr->val);
 }
 
 template <typename T>
 typename FrankList<T>::const_pointer FrankList<T>::const_reverse_iterator::operator->() const
 {
-	return &(this->ptr->val);
+    if (this->ptr == nullptr)
+    {
+        throw std::logic_error(this->error_message(typeid(*this), __func__));
+    }
+    return &(this->ptr->val);
 }
 
 template <typename T>
