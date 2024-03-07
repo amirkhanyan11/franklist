@@ -39,29 +39,23 @@ int main()
 
 
 	mi.sort();
-
 	mi.print();
-
-	std::cout <<  std::endl;
-
-	mi.print(true);
 	mi.sort(true);
 	mi.print();
 
-	// std::cout <<  std::endl;
+
 
 	// mi.sort();
 
 	// mi.print();
 
-	// std::cout <<  std::endl;
 
 	// for (auto i : stl)
 	// 	std::cout << i << "  ";
 
 	// std::cout << std::endl;
 
-	int count = 1;
+	// int count = 1;
 
 	// mi.traverse([iter, count](const int i) mutable {
 

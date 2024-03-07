@@ -236,6 +236,8 @@ template <typename T>
 void FrankList<T>::print(bool sorted, bool reversed)
 {
     traverse([](const_reference i){std::cout << i << "  ";}, sorted, reversed);
+	std::cout << "\n";
+
 }
 
 
