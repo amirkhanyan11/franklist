@@ -17,6 +17,12 @@ FrankList<T>::const_multi_reverse_iterator::const_multi_reverse_iterator(base_it
 	: base_iterator(rhv.ptr){}
 
 template <typename T>
+FrankList<T>::const_multi_reverse_iterator::const_multi_reverse_iterator(Node* ptr)
+
+	: base_iterator{ptr}{}
+
+
+template <typename T>
 const typename FrankList<T>::const_multi_reverse_iterator&  FrankList<T>::const_multi_reverse_iterator::operator=(const base_iterator& rhv)
 {
     return (*this = std::move(rhv));
@@ -52,7 +58,7 @@ const typename FrankList<T>::const_multi_reverse_iterator& FrankList<T>::const_m
 }
 
 template <typename T>
-const typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::const_multi_reverse_iterator::operator++(value_type)
+const typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::const_multi_reverse_iterator::operator++(int)
 {
     FrankList::Node* tmp = this->ptr;
 
@@ -70,7 +76,7 @@ const typename FrankList<T>::const_multi_reverse_iterator& FrankList<T>::const_m
 }
 
 template <typename T>
-const typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::const_multi_reverse_iterator::operator--(value_type)
+const typename FrankList<T>::const_multi_reverse_iterator FrankList<T>::const_multi_reverse_iterator::operator--(int)
 {
     FrankList::Node* tmp = this->ptr;
 
@@ -85,15 +91,6 @@ void FrankList<T>::const_multi_reverse_iterator::chmod()
 {
 	mode = !mode;
 }
-
-
-template <typename T>
-FrankList<T>::const_multi_reverse_iterator::const_multi_reverse_iterator(Node* ptr)
-
-	: base_iterator{ptr}{}
-
-
-
 
 
 #endif // __CONST_MULTI_REVERSE_ITERATOR_HPP__

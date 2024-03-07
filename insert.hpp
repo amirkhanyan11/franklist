@@ -30,14 +30,12 @@ iter FrankList<T>::insert(iter pos, size_type size, const_reference val)
     return (pos);
 }
 
-
 template <typename T>
 template <typename iter>
 iter FrankList<T>::insert(iter pos, std::initializer_list<T> init)
 {
     return insert(pos, init.begin(), init.end());
 }
-
 
 template <typename T>
 template <typename iter, typename input_iterator>
@@ -105,7 +103,6 @@ iter FrankList<T>::insert_rev(iter pos, const_reference val)
 
 }
 
-
 template <typename T>
 template <typename iter>
 iter FrankList<T>::erase(iter pos)
@@ -142,7 +139,6 @@ iter FrankList<T>::erase(iter f, iter l)
 	}
 	return f;
 }
-
 
 template <typename T>
 typename FrankList<T>::size_type FrankList<T>::remove(const_reference val)

@@ -14,6 +14,11 @@ FrankList<T>::desc_iterator::desc_iterator(base_iterator&& rhv)
 	: const_desc_iterator(rhv){}
 
 template <typename T>
+FrankList<T>::desc_iterator::desc_iterator(Node* ptr)
+
+	: const_desc_iterator{ptr}{}
+
+template <typename T>
 typename FrankList<T>::reference FrankList<T>::desc_iterator::operator*()
 {
 	return (const_cast<reference>((static_cast<const_desc_iterator*>(this)->operator*())));
@@ -41,10 +46,6 @@ const typename FrankList<T>::desc_iterator& FrankList<T>::desc_iterator::operato
     return (*this);
 }
 
-template <typename T>
-FrankList<T>::desc_iterator::desc_iterator(Node* ptr)
-
-	: const_desc_iterator{ptr}{}
 
 
 #endif // __DESC_ITERATOR_HPP__

@@ -4,70 +4,36 @@
 #include <list>
 
 
+class niger
+{
+public:
+	double gender;
+	niger(double d) { gender = d; }
+	bool operator<(const niger& other) const
+	{
+		return true;
+	}
+	bool operator>(const niger& other) const
+	{
+		return false;
+	}
+	bool operator>=(const niger& other) const
+	{
+		return true;
+	}
 
-
+};
 
 
 int main()
 {
+	FrankList<niger> nlist = {niger(3.14), niger(2.7)};
 
-	// FrankList<int> test = {42, 8, 7, 2, 5, 2222, 0, -8, 12};
+	for (FrankList<niger>::iterator i = nlist.begin(); i != nlist.end(); i++)
+	{
+		std::cout << i->gender << std::endl;
+	}
 
-	std::size_t size = 10;
-
-	FrankList<int> mi = {4, 5, 3, 7, 8, 99, 0, 1, -4, 6};
-	std::list<int> stl = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-	// auto mm = mi.begin();
-	// auto ss = stl.begin();
-
-	// int count = 5;
-	// while(count > 0)
-	// {
-	// 	mm++, ss++, count--;
-	// }
-
-
-	// mi.insert(mi.begin(), {1, 2, 3, 4, 5, 6});
-	// mi.insert(mi.begin(), {1, 2, 3, 4, 5, 6});
-	// mi.insert(mi.begin(), {1, 2, 3, 4, 5, 6});
-	// stl.insert(stl.begin(), {1, 2, 3, 4, 5, 6});
-	// stl.insert(stl.begin(), {1, 2, 3, 4, 5, 6});
-	// stl.insert(stl.begin(), {1, 2, 3, 4, 5, 6});
-
-	// auto iter = stl.begin();
-
-
-	mi.sort();
-	mi.print();
-	mi.sort(true);
-	mi.print();
-
-
-
-	// mi.sort();
-
-	// mi.print();
-
-
-	// for (auto i : stl)
-	// 	std::cout << i << "  ";
-
-	// std::cout << std::endl;
-
-	// int count = 1;
-
-	// mi.traverse([iter, count](const int i) mutable {
-
-	// 	if (*iter != i)
-	// 		std::cout << "Test " << count <<  " : novu nonononoo snekek olololo\n";
-	// 	else
-	// 		std::cout << "Test " << count <<  " : vu\n";
-
-	// 	iter++;
-	// 	count++;
-	// },
-	// mi.begin(), mi.end());
 
 	return 0;
 }

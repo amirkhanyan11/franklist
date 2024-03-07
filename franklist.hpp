@@ -43,7 +43,6 @@ typename FrankList<T>::size_type FrankList<T>::size() const
     return (lstsize);
 }
 
-
 template <typename T>
 void FrankList<T>::clear() noexcept
 {
@@ -68,8 +67,6 @@ void FrankList<T>::resize(size_type s, const_reference init)
 								so mine augments the list */
     }
 }
-
-
 
 template <typename T>
 void FrankList<T>::push_front(const_reference elem)
@@ -149,8 +146,6 @@ void FrankList<T>::pop_back()
 
     delete tmp;
 }
-
-
 
 template <typename T>
 typename FrankList<T>::const_reference FrankList<T>::front() const
@@ -239,6 +234,5 @@ void FrankList<T>::print(bool sorted, bool reversed)
 	std::cout << "\n";
 
 }
-
 
 #endif // __FRANKLIST_HPP_IMPL__

@@ -3,7 +3,6 @@
 
 #include "franklist.h"
 
-
 template <typename T>
 FrankList<T>::const_desc_iterator::const_desc_iterator(const base_iterator& rhv)
 
@@ -48,7 +47,7 @@ const typename FrankList<T>::const_desc_iterator& FrankList<T>::const_desc_itera
 }
 
 template <typename T>
-const typename FrankList<T>::const_desc_iterator FrankList<T>::const_desc_iterator::operator++(value_type)
+const typename FrankList<T>::const_desc_iterator FrankList<T>::const_desc_iterator::operator++(int)
 {
     FrankList::Node* tmp = this->ptr;
 
@@ -65,7 +64,7 @@ const typename FrankList<T>::const_desc_iterator& FrankList<T>::const_desc_itera
 }
 
 template <typename T>
-const typename FrankList<T>::const_desc_iterator FrankList<T>::const_desc_iterator::operator--(value_type)
+const typename FrankList<T>::const_desc_iterator FrankList<T>::const_desc_iterator::operator--(int)
 {
     FrankList::Node* tmp = this->ptr;
 

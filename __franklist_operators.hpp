@@ -40,10 +40,7 @@ const FrankList<T>& FrankList<T>::operator=(std::initializer_list<T> init)
     return *this;
 }
 
-
 // BOOLEAN OPERATORS
-
-
 template <typename T>
 bool FrankList<T>::operator==(const FrankList<T>& rhv) const
 {
@@ -114,7 +111,6 @@ bool FrankList<T>::operator>=(const FrankList<T>& rhv) const
 {
     return !(*this < rhv);
 }
-
 
 
 #endif // __FRANKLIST_OPERATORS_HPP__

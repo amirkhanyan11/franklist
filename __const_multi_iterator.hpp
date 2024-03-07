@@ -15,6 +15,11 @@ FrankList<T>::const_multi_iterator::const_multi_iterator(base_iterator&& rhv)
 	: base_iterator(rhv.ptr){}
 
 template <typename T>
+FrankList<T>::const_multi_iterator::const_multi_iterator(Node* ptr)
+
+	: base_iterator{ptr}{}
+
+template <typename T>
 const typename FrankList<T>::const_multi_iterator& FrankList<T>::const_multi_iterator::operator=(const base_iterator& rhv)
 {
     this->ptr = rhv->ptr;
@@ -50,7 +55,7 @@ const typename FrankList<T>::const_multi_iterator& FrankList<T>::const_multi_ite
 }
 
 template <typename T>
-const typename FrankList<T>::const_multi_iterator FrankList<T>::const_multi_iterator::operator++(value_type)
+const typename FrankList<T>::const_multi_iterator FrankList<T>::const_multi_iterator::operator++(int)
 {
     FrankList::Node* tmp = this->ptr;
 
@@ -67,7 +72,7 @@ const typename FrankList<T>::const_multi_iterator& FrankList<T>::const_multi_ite
 }
 
 template <typename T>
-const typename FrankList<T>::const_multi_iterator FrankList<T>::const_multi_iterator::operator--(value_type)
+const typename FrankList<T>::const_multi_iterator FrankList<T>::const_multi_iterator::operator--(int)
 {
     FrankList::Node* tmp = this->ptr;
 
@@ -81,12 +86,6 @@ void FrankList<T>::const_multi_iterator::chmod()
 {
 	mode = !mode;
 }
-
-
-template <typename T>
-FrankList<T>::const_multi_iterator::const_multi_iterator(Node* ptr)
-
-	: base_iterator{ptr}{}
 
 
 

@@ -55,7 +55,7 @@ const typename FrankList<T>::const_iterator& FrankList<T>::const_iterator::opera
 }
 
 template <typename T>
-const typename FrankList<T>::const_iterator FrankList<T>::const_iterator::operator++(value_type)
+const typename FrankList<T>::const_iterator FrankList<T>::const_iterator::operator++(int)
 {
     FrankList::Node* tmp = this->ptr;
 
@@ -72,7 +72,7 @@ const typename FrankList<T>::const_iterator& FrankList<T>::const_iterator::opera
 }
 
 template <typename T>
-const typename FrankList<T>::const_iterator FrankList<T>::const_iterator::operator--(value_type)
+const typename FrankList<T>::const_iterator FrankList<T>::const_iterator::operator--(int)
 {
     FrankList::Node* tmp = this->ptr;
 

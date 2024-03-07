@@ -13,6 +13,11 @@ FrankList<T>::const_asc_iterator::const_asc_iterator(base_iterator&& rhv)
 
 	: base_iterator(rhv.ptr){}
 
+template <typename T>
+FrankList<T>::const_asc_iterator::const_asc_iterator(Node* ptr)
+
+	: base_iterator(ptr){}
+
 
 template <typename T>
 const typename FrankList<T>::const_asc_iterator& FrankList<T>::const_asc_iterator::operator=(const base_iterator& rhv)
@@ -48,7 +53,7 @@ const typename FrankList<T>::const_asc_iterator& FrankList<T>::const_asc_iterato
 }
 
 template <typename T>
-const typename FrankList<T>::const_asc_iterator FrankList<T>::const_asc_iterator::operator++(value_type)
+const typename FrankList<T>::const_asc_iterator FrankList<T>::const_asc_iterator::operator++(int)
 {
     FrankList::Node* tmp = this->ptr;
 
@@ -65,7 +70,7 @@ const typename FrankList<T>::const_asc_iterator& FrankList<T>::const_asc_iterato
 }
 
 template <typename T>
-const typename FrankList<T>::const_asc_iterator FrankList<T>::const_asc_iterator::operator--(value_type)
+const typename FrankList<T>::const_asc_iterator FrankList<T>::const_asc_iterator::operator--(int)
 {
     FrankList::Node* tmp = this->ptr;
 
@@ -73,11 +78,5 @@ const typename FrankList<T>::const_asc_iterator FrankList<T>::const_asc_iterator
 
 	return (base_iterator(tmp));
 }
-
-template <typename T>
-FrankList<T>::const_asc_iterator::const_asc_iterator(Node* ptr)
-
-	: base_iterator(ptr){}
-
 
 #endif // __CONST_ASC_ITERATOR_HPP__
