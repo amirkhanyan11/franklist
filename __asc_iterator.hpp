@@ -28,7 +28,7 @@ typename FrankList<T>::pointer FrankList<T>::asc_iterator::operator->()
 template <typename T>
 const typename FrankList<T>::asc_iterator& FrankList<T>::asc_iterator::operator=(const base_iterator& rhv)
 {
-	*(static_cast<const_asc_iterator*>(this)) = rhv;
+	this->ptr = rhv.ptr;
 
     return (*this);
 }
@@ -36,7 +36,7 @@ const typename FrankList<T>::asc_iterator& FrankList<T>::asc_iterator::operator=
 template <typename T>
 const typename FrankList<T>::asc_iterator& FrankList<T>::asc_iterator::operator=(base_iterator&& rhv)
 {
-	*(static_cast<const_asc_iterator*>(this)) = rhv;
+	this->ptr = rhv.ptr;
 
     return (*this);
 }

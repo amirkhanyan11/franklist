@@ -130,6 +130,7 @@ template <typename T>
 template <typename iter>
 iter FrankList<T>::erase(iter pos)
 {
+	auto iter_next = iter(pos.ptr->next);
 	if (pos == iter(nullptr))
 		return pos;
 	if (pos == iter(this->head))
@@ -144,9 +145,10 @@ iter FrankList<T>::erase(iter pos)
 		this->organize_pop(pos.ptr);
 
 		delete pos.ptr;
+		//std::cout << "value" << pos.ptr->next->val;
 
 	}
-	return pos;
+	return (iter_next);
 }
 
 template <typename T>
@@ -167,11 +169,13 @@ typename FrankList<T>::size_type FrankList<T>::remove(const_reference val)
 {
 	size_type elements_removed = 0;
 
-	for (FrankList<T>::iterator i = this->begin; i != this->end(); i++)
+	for (FrankList<T>::iterator i = this->begin(); i != this->end(); )
 	{
+		auto j = i++;
 		if (*i == val)
 		{
-			erase(i);
+
+			erase(j);
 			elements_removed++;
 		}
 	}
@@ -199,6 +203,20 @@ typename FrankList<T>::size_type FrankList<T>::remove_if(unary_predicate func)
 
 
  // ORGANIZE METHODS
+
+template <typename T>
+void FrankList<T>::organize_pop(Node* ptr)
+{
+	if (ptr != this->ahead)
+		ptr->desc->asc = ptr->asc;
+	else
+		this->ahead = ptr->asc;
+	if (ptr != this->atail)
+		ptr->asc->desc = ptr->desc;
+	else
+		this->tail = ptr->desc;
+}
+
 template <typename T>
 void FrankList<T>::organize_left(Node* ptr)
 {
@@ -334,7 +352,7 @@ void FrankList<T>::reverse()
 		tail = tail->next;
 	}
 	tail->next = nullptr;
-	
+
 	head = t_tail;
 	head->prev = nullptr;
 }
@@ -375,7 +393,7 @@ void FrankList<T>::sort(bool reversed)
 
 		}
 	}
-	
+
 }
 
 #endif // __INSERT_HPP__

@@ -150,18 +150,6 @@ void FrankList<T>::pop_back()
 }
 
 
-template <typename T>
-void FrankList<T>::organize_pop(Node* ptr)
-{
-	if (ptr != this->ahead)
-		ptr->desc->asc = ptr->asc;
-	else
-		this->ahead = ptr->asc;
-	if (ptr != this->atail)
-		ptr->asc->desc = ptr->desc;
-	else
-		this->tail = ptr->desc;
-}
 
 template <typename T>
 typename FrankList<T>::const_reference FrankList<T>::front() const

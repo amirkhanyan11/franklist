@@ -28,7 +28,7 @@ typename FrankList<T>::pointer FrankList<T>::multi_reverse_iterator::operator->(
 template <typename T>
 const typename FrankList<T>::multi_reverse_iterator& FrankList<T>::multi_reverse_iterator::operator=(const base_iterator& rhv)
 {
-    *(static_cast<const_multi_reverse_iterator*>(this)) = rhv;
+    this->ptr = rhv.ptr;
 
 	return(*this);
 }
@@ -36,7 +36,7 @@ const typename FrankList<T>::multi_reverse_iterator& FrankList<T>::multi_reverse
 template <typename T>
 const typename FrankList<T>::multi_reverse_iterator& FrankList<T>::multi_reverse_iterator::operator=(base_iterator&& rhv)
 {
-    *(static_cast<const_multi_reverse_iterator*>(this)) = rhv;
+    this->ptr = rhv.ptr;
 
 	return(*this);
 }
