@@ -1,4 +1,3 @@
-
 #ifndef __CONST_MULTI_ITERATOR_HPP__
 #define __CONST_MULTI_ITERATOR_HPP__
 

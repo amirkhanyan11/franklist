@@ -1,4 +1,3 @@
-
 #ifndef __REVERSE_ITERATOR_HPP__
 #define __REVERSE_ITERATOR_HPP__
 

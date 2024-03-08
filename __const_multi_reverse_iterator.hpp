@@ -1,10 +1,7 @@
 #ifndef __CONST_MULTI_REVERSE_ITERATOR_HPP__
 #define __CONST_MULTI_REVERSE_ITERATOR_HPP__
 
-
 #include "franklist.h"
-
-
 
 template <typename T>
 FrankList<T>::const_multi_reverse_iterator::const_multi_reverse_iterator(const base_iterator& rhv)

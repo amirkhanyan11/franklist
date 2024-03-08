@@ -3,7 +3,6 @@
 
 #include "franklist.h"
 
-
 template <typename T>
 FrankList<T>::const_iterator::const_iterator(Node* ptr)
 

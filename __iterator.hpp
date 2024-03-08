@@ -1,9 +1,7 @@
-
 #ifndef __ITERATOR_HPP__
 #define __ITERATOR_HPP__
 
 #include "franklist.h"
-
 
 template <typename T>
 FrankList<T>::iterator::iterator(const base_iterator& rhv)

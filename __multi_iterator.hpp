@@ -1,10 +1,7 @@
-
 #ifndef __MULTI_ITERATOR_HPP__
 #define __MULTI_ITERATOR_HPP__
 
-
 #include "franklist.h"
-
 
 template <typename T>
 FrankList<T>::multi_iterator::multi_iterator(const base_iterator& rhv)

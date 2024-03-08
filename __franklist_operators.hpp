@@ -3,9 +3,7 @@
 
 #include "franklist.hpp"
 
-
 // ASSIGNMENT OPERATORS
-
 template <typename T>
 const FrankList<T>& FrankList<T>::operator=(const FrankList<T>& rhv)
 {
