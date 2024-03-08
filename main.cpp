@@ -3,6 +3,7 @@
 #include <vector>
 #include <list>
 
+using namespace vhuk;
 
 class niger
 {
@@ -36,15 +37,15 @@ std::ostream& operator<<(std::ostream& os, const niger& ng)
 
 int main()
 {
-	// FrankList<niger> nlist = {niger(3.14), niger(2.7)};
+	// vhuk::FrankList<niger> nlist = {niger(3.14), niger(2.7)};
 
-	// for (FrankList<niger>::iterator i = nlist.begin(); i != nlist.end(); i++)
+	// for (vhuk::FrankList<niger>::iterator i = nlist.begin(); i != nlist.end(); i++)
 	// {
 	// 	std::cout << i->gender << std::endl;
 	// }
 
 	std::list<niger> stl;
-	FrankList<niger> mi;
+	vhuk::FrankList<niger> mi;
 
 	auto i = mi.begin();
 

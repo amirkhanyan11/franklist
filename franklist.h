@@ -456,7 +456,6 @@ private:
     Node* atail;
 };
 
-
 #include "franklist.hpp"
 
 }
